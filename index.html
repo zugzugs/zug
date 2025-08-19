@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tjollas Ultra Super Duper Stats Dashboard</title>
+  <title>Tjolas Ultra Super Duper Stats Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.6/babel.min.js"></script>
@@ -18,6 +18,7 @@
       const [searchTerm, setSearchTerm] = React.useState('');
       const [sortConfig, setSortConfig] = React.useState({ key: 'n', direction: 'asc' });
       const [error, setError] = React.useState(null);
+      const [expandedRows, setExpandedRows] = React.useState({});
 
       // Fetch data from JSON files
       React.useEffect(() => {
@@ -35,27 +36,33 @@
           });
       }, []);
 
-      // Combine player data with Discord names
-      const combinedData = playerData.map(player => {
-        const playerInfo = players.find(p => p.player_names && p.player_names.includes(player.n));
-        return {
-          ...player,
-          discord_names: playerInfo && playerInfo.discord_names ? playerInfo.discord_names.join(', ') : 'Unknown',
-          server_names: playerInfo && playerInfo.server_names ? playerInfo.server_names.join(', ') : 'Unknown'
-        };
+      // Combine player data with Discord names and server names
+      const combinedData = [];
+      players.forEach(playerInfo => {
+        playerInfo.player_names.forEach(playerName => {
+          const playerStats = playerData.find(p => p.n === playerName);
+          if (playerStats) {
+            combinedData.push({
+              ...playerStats,
+              discord_names: playerInfo.discord_names.join(', '),
+              server_names: playerInfo.server_names.join(', ')
+            });
+          }
+        });
       });
 
       // Filter and sort data
       const filteredData = combinedData.filter(player =>
         (player.n || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
         (player.discord_names || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (player.server_names || '').toLowerCase().includes(searchTerm.toLowerCase())
+        (player.server_names || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (player.allStars?.some(spec => spec.spec.toLowerCase().includes(searchTerm.toLowerCase())) || false)
       );
 
       const sortedData = [...filteredData].sort((a, b) => {
-        if (sortConfig.key === 'n' || sortConfig.key === 'discord_names' || sortConfig.key === 'server_names') {
-          const aValue = a[sortConfig.key] || '';
-          const bValue = b[sortConfig.key] || '';
+        if (sortConfig.key === 'n' || sortConfig.key === 'discord_names' || sortConfig.key === 'server_names' || sortConfig.key === 'spec') {
+          const aValue = sortConfig.key === 'spec' ? (a.allStars?.[0]?.spec || '') : (a[sortConfig.key] || '');
+          const bValue = sortConfig.key === 'spec' ? (b.allStars?.[0]?.spec || '') : (b[sortConfig.key] || '');
           return sortConfig.direction === 'asc'
             ? aValue.localeCompare(bValue)
             : bValue.localeCompare(aValue);
@@ -75,6 +82,13 @@
         }));
       };
 
+      const toggleRow = (playerName) => {
+        setExpandedRows(prev => ({
+          ...prev,
+          [playerName]: !prev[playerName]
+        }));
+      };
+
       // Format number safely
       const formatNumber = (value) => {
         return typeof value === 'number' && !isNaN(value) ? value.toFixed(2) : 'N/A';
@@ -91,10 +105,10 @@
       return (
         <div className="min-h-screen bg-gray-900 p-6">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold text-blue-400 mb-6">Tjollas Ultra Super Duper Stats Dashboard</h1>
+            <h1 className="text-3xl font-bold text-blue-400 mb-6">Tjolas Ultra Super Duper Stats Dashboard</h1>
             <input
               type="text"
-              placeholder="Search by Player, Discord, or Server Name..."
+              placeholder="Search by Player, Discord, Server Name, or Spec..."
               className="w-full p-2 mb-4 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -113,26 +127,44 @@
                       Server Name {sortConfig.key === 'server_names' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('bpa')}>
-                      BPA {sortConfig.key === 'bpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                      % {sortConfig.key === 'bpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('mpa')}>
-                      MPA {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                      Points {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-3">Spec</th>
+                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('spec')}>
+                      Spec {sortConfig.key === 'spec' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                    </th>
                     <th className="p-3">Role</th>
                   </tr>
                 </thead>
                 <tbody>
                   {sortedData.map(player => (
-                    <tr key={player.n || Math.random()} className="border-t border-gray-700 hover:bg-gray-600">
-                      <td className="p-3">{player.n || 'Unknown'}</td>
-                      <td className="p-3">{player.discord_names}</td>
-                      <td className="p-3">{player.server_names}</td>
-                      <td className="p-3">{formatNumber(player.bpa)}</td>
-                      <td className="p-3">{formatNumber(player.mpa)}</td>
-                      <td className="p-3">{player.allStars?.[0]?.spec || 'N/A'}</td>
-                      <td className="p-3">{player.mt?.toUpperCase() || 'N/A'}</td>
-                    </tr>
+                    <React.Fragment key={player.n || Math.random()}>
+                      <tr
+                        className="border-t border-gray-700 hover:bg-gray-600 cursor-pointer"
+                        onClick={() => toggleRow(player.n)}
+                      >
+                        <td className="p-3">{player.n || 'Unknown'}</td>
+                        <td className="p-3">{player.discord_names}</td>
+                        <td className="p-3">{player.server_names}</td>
+                        <td className="p-3">{formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}</td>
+                        <td className="p-3">{formatNumber(player.allStars?.[0]?.points || 'N/A')}</td>
+                        <td className="p-3">{player.allStars?.[0]?.spec || 'N/A'}</td>
+                        <td className="p-3">{player.mt?.toUpperCase() || 'N/A'}</td>
+                      </tr>
+                      {expandedRows[player.n] && player.allStars?.slice(1).map((spec, index) => (
+                        <tr key={`${player.n}-${index}`} className="border-t border-gray-800 bg-gray-700">
+                          <td className="p-3 pl-6 italic">{player.n || 'Unknown'}</td>
+                          <td className="p-3">{player.discord_names}</td>
+                          <td className="p-3">{player.server_names}</td>
+                          <td className="p-3">{formatNumber(spec.rankPercent)}</td>
+                          <td className="p-3">{formatNumber(spec.points)}</td>
+                          <td className="p-3">{spec.spec || 'N/A'}</td>
+                          <td className="p-3">{player.mt?.toUpperCase() || 'N/A'}</td>
+                        </tr>
+                      ))}
+                    </React.Fragment>
                   ))}
                 </tbody>
               </table>
