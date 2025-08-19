@@ -270,8 +270,10 @@
                   {sortedData.map(player => (
                     <React.Fragment key={player.n || Math.random()}>
                       <tr
-                        className="border-t border-gray-700 hover:bg-gray-600 cursor-pointer"
-                        onClick={() => toggleRow(player.n)}
+                        className={`border-t border-gray-700 hover:bg-gray-600 transition-colors duration-150 ${
+                          player.extraSpecs > 0 ? 'cursor-pointer' : 'cursor-default'
+                        }`}
+                        onClick={() => player.extraSpecs > 0 && toggleRow(player.n)}
                       >
                         <td className="p-3">{player.n || 'Unknown'}</td>
                         <td className="p-3 group relative">
@@ -284,12 +286,21 @@
                           {formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}
                         </td>
                         <td className="p-3">{formatNumber(player.allStars?.[0]?.points || 'N/A')}</td>
-                        <td className="p-3 group relative">
-                          <img
-                            src={getSpecIcon(player.allStars?.[0]?.spec)}
-                            alt={player.allStars?.[0]?.spec || 'Unknown Spec'}
-                            className="w-6 h-6"
-                          />
+                        <td className="p-3 group relative flex items-center gap-2">
+                          <div className="flex items-center gap-2">
+                            <img
+                              src={getSpecIcon(player.allStars?.[0]?.spec)}
+                              alt={player.allStars?.[0]?.spec || 'Unknown Spec'}
+                              className="w-6 h-6"
+                            />
+                            {player.extraSpecs > 0 && (
+                              <span
+                                className="bg-green-700 text-white text-xs font-bold rounded-full px-2 py-1 group-hover:bg-green-400 transition-colors"
+                              >
+                                +{player.extraSpecs}
+                              </span>
+                            )}
+                          </div>
                           <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
                             Spec: {player.allStars?.[0]?.spec || 'N/A'}
                           </span>
