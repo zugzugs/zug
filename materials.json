@@ -9975,19 +9975,19 @@
         "itemId": 2716,
         "name": "Monster - Item",
         "quality": 0,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 2717,
         "name": "Monster - Item",
         "quality": 0,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 2718,
         "name": "Monster - Item",
         "quality": 0,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 2719,
@@ -13485,7 +13485,7 @@
         "itemId": 3350,
         "name": "Monster - Item",
         "quality": 0,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 3351,
@@ -106665,7 +106665,7 @@
         "itemId": 209423,
         "name": "Flowing Scarf",
         "quality": 3,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 209424,
@@ -106707,7 +106707,7 @@
         "itemId": 209526,
         "name": "TEST Darkwater Talwar",
         "quality": 3,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 209527,
@@ -122835,7 +122835,7 @@
         "itemId": 227688,
         "name": "Gorehowl",
         "quality": 1,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 227689,
@@ -138063,97 +138063,97 @@
         "itemId": 235868,
         "name": "Bulwark of Ire",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_shield_01"
     },
     {
         "itemId": 235869,
         "name": "The Master's Cowl",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235870,
         "name": "Rattlechain Helm",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235871,
         "name": "Clutching Death Helm",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235872,
         "name": "Stalker's Bands",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235873,
         "name": "Crypt's Keepers",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235874,
         "name": "Cultist's Handwraps",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_gauntlets_06"
     },
     {
         "itemId": 235875,
         "name": "Gravedigger's Gloves",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235876,
         "name": "Sinner's Handguards",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235877,
         "name": "Fanatic's Gauntlets",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235878,
         "name": "Malefic Belt",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235879,
         "name": "Nimble Links",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235880,
         "name": "Pauper Soles",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235881,
         "name": "Dreaded Treaders",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235882,
         "name": "Clattering Steps",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235883,
         "name": "Well Diver's Stumble",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235884,
@@ -138183,43 +138183,43 @@
         "itemId": 235888,
         "name": "Clobberclub",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_mace_1h_stratholme_d_02"
     },
     {
         "itemId": 235889,
         "name": "Servant's Quarterstaff",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_staff_02"
     },
     {
         "itemId": 235890,
         "name": "Shadow Weaver's Needle",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235891,
         "name": "Ol' Reliable",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235892,
         "name": "Darkrider's Spine",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_weapon_bow_08"
     },
     {
         "itemId": 235893,
         "name": "Shadowbound Grimoire",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 235894,
         "name": "Doomsayer's Demise",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_bone_taurenskull_01"
     },
     {
         "itemId": 236002,
@@ -141723,25 +141723,25 @@
         "itemId": 236642,
         "name": "Mender's Handwraps",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 236643,
         "name": "Nightwatcher's Gloves",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 236644,
         "name": "Mourner's Handguards",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 236645,
         "name": "Lightwielder's Gauntlets",
         "quality": 4,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 236656,
@@ -144753,13 +144753,13 @@
         "itemId": 240217,
         "name": "Monster Item - Stave_2H_Jeweled_A_02 - Red",
         "quality": 0,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 240742,
         "name": "Monster - 1H",
         "quality": 0,
-        "iconname": "default_icon"
+        "iconname": "inv_misc_questionmark"
     },
     {
         "itemId": 240832,
