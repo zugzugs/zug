@@ -7,7 +7,15 @@
   <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.6/babel.min.js"></script>
+  <script src="https://wow.zamimg.com/widgets/power.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    img {
+        border-radius: 0.375rem; /* Tailwind's rounded-md */
+        border: 3px solid #131212; /* Tailwind's border-gray600 */
+    }
+
+  </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
   <div id="root"></div>
@@ -15,20 +23,61 @@
     function App() {
       const [players, setPlayers] = React.useState([]);
       const [playerData, setPlayerData] = React.useState([]);
+      const [gearData, setGearData] = React.useState([]);
+      const [itemIconMap, setItemIconMap] = React.useState({});
       const [searchTerm, setSearchTerm] = React.useState('');
       const [sortConfig, setSortConfig] = React.useState({ key: 'n', direction: 'asc' });
       const [error, setError] = React.useState(null);
       const [expandedRows, setExpandedRows] = React.useState({});
 
+      // Spec-to-icon mapping
+      const specIcons = {
+        elemental: "https://cdn.discordapp.com/emojis/637564379595931649.png",
+        protection: "https://cdn.discordapp.com/emojis/637564444834136065.png",
+        assassination: "https://cdn.discordapp.com/emojis/637564351707873324.png",
+        fury: "https://cdn.discordapp.com/emojis/637564445215948810.png",
+        enhancement: "https://cdn.discordapp.com/emojis/936357056951222322.png",
+        destruction: "https://cdn.discordapp.com/emojis/637564406682877964.png",
+        balance: "https://cdn.discordapp.com/emojis/637564171994529798.png",
+        survival: "https://cdn.discordapp.com/emojis/637564202130866186.png",
+        default: "https://wow.zamimg.com/images/wow/icons/small/inv_misc_questionmark.jpg"
+      };
+
       // Fetch data from JSON files
       React.useEffect(() => {
         Promise.all([
-          fetch('players.json').then(res => res.json()).catch(() => []),
-          fetch('playerData.json').then(res => res.json()).catch(() => [])
+          fetch('players.json').then(res => res.json()).catch(err => {
+            console.error('Failed to fetch players.json:', err);
+            return [];
+          }),
+          fetch('playerData.json').then(res => res.json()).catch(err => {
+            console.error('Failed to fetch playerData.json:', err);
+            return [];
+          }),
+          fetch('gear.json').then(res => res.json()).catch(err => {
+            console.error('Failed to fetch gear.json:', err);
+            return { players: [] };
+          }),
+          fetch('materials.json').then(res => res.json()).catch(err => {
+            console.error('Failed to fetch materials.json:', err);
+            return [];
+          })
         ])
-          .then(([playersData, playerData]) => {
-            setPlayers(playersData);
-            setPlayerData(playerData);
+          .then(([playersData, playerData, gearData, materialsData]) => {
+            console.log('Fetched players.json:', playersData);
+            console.log('Fetched playerData.json:', playerData);
+            console.log('Fetched gear.json:', gearData);
+            console.log('Fetched materials.json:', materialsData);
+            setPlayers(Array.isArray(playersData) ? playersData : []);
+            setPlayerData(Array.isArray(playerData) ? playerData : []);
+            setGearData(Array.isArray(gearData.players) ? gearData.players : []);
+            const iconMap = materialsData.reduce((map, item) => {
+              if (item.itemId && item.iconname) {
+                map[item.itemId] = item.iconname;
+              }
+              return map;
+            }, {});
+            setItemIconMap(iconMap);
           })
           .catch(error => {
             console.error('Error fetching data:', error);
@@ -36,18 +85,45 @@
           });
       }, []);
 
-      // Combine player data with Discord names and server names
+      // Combine player data with Discord names, server names, and gear
       const combinedData = [];
       players.forEach(playerInfo => {
+        if (!playerInfo.player_names || !Array.isArray(playerInfo.player_names)) {
+          console.warn('Skipping playerInfo with missing or invalid player_names:', playerInfo);
+          return;
+        }
         playerInfo.player_names.forEach(playerName => {
-          const playerStats = playerData.find(p => p.n === playerName);
+          if (!playerName) return;
+          const playerStats = playerData.find(p => p.n && p.n.toLowerCase() === playerName.toLowerCase());
           if (playerStats) {
+            // Normalize server names for matching
+            const normalizedServerNames = (playerInfo.server_names || []).map(name => 
+              name && typeof name === 'string' ? name.toLowerCase().replace(/\s+/g, '-') : ''
+            ).filter(name => name);
+            // Find matching gear data (case-insensitive name, optional realm match)
+            const gear = gearData.find(g => {
+              if (!g.name) {
+                console.warn('Invalid gear entry (missing name):', g);
+                return false;
+              }
+              const nameMatch = g.name.toLowerCase() === playerName.toLowerCase();
+              const realm = g.character?.realm?.name || g.character?.realm?.slug || '';
+              const normalizedRealm = typeof realm === 'string' ? realm.toLowerCase().replace(/\s+/g, '-') : '';
+              const realmMatch = normalizedServerNames.length === 0 || !realm || 
+                normalizedServerNames.includes(normalizedRealm);
+              console.log(`Comparing: ${g.name} vs ${playerName}, ${normalizedRealm || 'no realm'} vs [${normalizedServerNames.join(', ')}] -> ${nameMatch && realmMatch}`);
+              return nameMatch && realmMatch;
+            });
+            console.log(`Matching gear for ${playerName} (${normalizedServerNames.join(', ')}):`, gear || 'No gear found');
             combinedData.push({
               ...playerStats,
-              discord_names: playerInfo.discord_names.join(', '),
-              server_names: playerInfo.server_names.join(', '),
-              extraSpecs: playerStats.allStars ? Math.max(0, playerStats.allStars.length - 1) : 0
+              discord_names: playerInfo.discord_names?.join(', ') || 'N/A',
+              server_names: playerInfo.server_names?.join(', ') || 'N/A',
+              extraSpecs: playerStats.allStars ? Math.max(0, playerStats.allStars.length - 1) : 0,
+              gear: gear && gear.equipment?.equipped_items ? gear.equipment.equipped_items : []
             });
+          } else {
+            console.warn(`No playerStats found for ${playerName}`);
           }
         });
       });
@@ -57,23 +133,28 @@
         (player.n || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
         (player.discord_names || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
         (player.server_names || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (player.allStars?.some(spec => spec.spec.toLowerCase().includes(searchTerm.toLowerCase())) || false)
+        (player.allStars?.some(spec => spec.spec?.toLowerCase().includes(searchTerm.toLowerCase())) || false)
       );
 
       const sortedData = [...filteredData].sort((a, b) => {
-        if (sortConfig.key === 'n' || sortConfig.key === 'discord_names' || sortConfig.key === 'server_names' || sortConfig.key === 'spec') {
-          const aValue = sortConfig.key === 'spec' ? (a.allStars?.[0]?.spec || '') : (a[sortConfig.key] || '');
-          const bValue = sortConfig.key === 'spec' ? (b.allStars?.[0]?.spec || '') : (b[sortConfig.key] || '');
+        const getValue = (obj, key) => {
+          /*if (key === 'spec') return obj.allStars?.[0]?.spec || '';*/
+          if (key === 'bpa') return typeof obj.bpa === 'number' ? obj.bpa : (obj.allStars?.[0]?.rankPercent || -Infinity);
+          if (key === 'mpa') return typeof obj.mpa === 'number' ? obj.mpa : (obj.allStars?.[0]?.points || -Infinity);
+          if (key === 'extraSpecs') return typeof obj.extraSpecs === 'number' ? obj.extraSpecs : 0;
+          return obj[key] || '';
+        };
+        const aValue = getValue(a, sortConfig.key);
+        const bValue = getValue(b, sortConfig.key);
+        console.log(`Sorting by ${sortConfig.key}: ${a.n} (${aValue}) vs ${b.n} (${bValue})`);
+        if (typeof aValue === 'string' && typeof bValue === 'string') {
           return sortConfig.direction === 'asc'
             ? aValue.localeCompare(bValue)
             : bValue.localeCompare(aValue);
-        } else {
-          const aValue = typeof a[sortConfig.key] === 'number' ? a[sortConfig.key] : -Infinity;
-          const bValue = typeof b[sortConfig.key] === 'number' ? b[sortConfig.key] : -Infinity;
-          return sortConfig.direction === 'asc'
-            ? aValue - bValue
-            : bValue - aValue;
         }
+        return sortConfig.direction === 'asc'
+          ? aValue - bValue
+          : bValue - aValue;
       });
 
       const handleSort = (key) => {
@@ -95,6 +176,12 @@
         return typeof value === 'number' && !isNaN(value) ? value.toFixed(2) : 'N/A';
       };
 
+      // Get spec icon URL
+      const getSpecIcon = (spec) => {
+        const normalizedSpec = spec?.toLowerCase() || '';
+        return specIcons[normalizedSpec] || specIcons.default;
+      };
+
       if (error) {
         return (
           <div className="min-h-screen bg-gray-900 p-6 flex items-center justify-center">
@@ -109,7 +196,7 @@
             <h1 className="text-3xl font-bold text-blue-400 mb-6">Tjollas Ultra Super Duper Stats Dashboard</h1>
             <input
               type="text"
-              placeholder="Search by Player, Discord, Server Name, or Spec..."
+              placeholder="Search by Player, Server Name, or Spec..."
               className="w-full p-2 mb-4 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -120,9 +207,6 @@
                   <tr className="bg-gray-700">
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('n')}>
                       Player Name {sortConfig.key === 'n' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-                    </th>
-                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('discord_names')}>
-                      Discord Name {sortConfig.key === 'discord_names' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('server_names')}>
                       Server Name {sortConfig.key === 'server_names' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
@@ -136,10 +220,8 @@
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('spec')}>
                       Spec {sortConfig.key === 'spec' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-3">Role</th>
-                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('extraSpecs')}>
-                      Extra Specs {sortConfig.key === 'extraSpecs' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-                    </th>
+
+                    <th className="p-3">Gear</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -150,26 +232,82 @@
                         onClick={() => toggleRow(player.n)}
                       >
                         <td className="p-3">{player.n || 'Unknown'}</td>
-                        <td className="p-3">{player.discord_names}</td>
-                        <td className="p-3">{player.server_names}</td>
+                        <td className="p-3 group relative">
+                          {player.server_names}
+                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                            Discord: {player.discord_names}
+                          </span>
+                        </td>
                         <td className="p-3">{formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}</td>
                         <td className="p-3">{formatNumber(player.allStars?.[0]?.points || 'N/A')}</td>
-                        <td className="p-3">{player.allStars?.[0]?.spec || 'N/A'}</td>
-                        <td className="p-3">{player.mt?.toUpperCase() || 'N/A'}</td>
-                        <td className="p-3">{player.extraSpecs > 0 ? `+${player.extraSpecs}` : '0'}</td>
+                        <td className="p-3 group relative">
+                          <img
+                            src={getSpecIcon(player.allStars?.[0]?.spec)}
+                            alt={player.allStars?.[0]?.spec || 'Unknown Spec'}
+                            className="w-6 h-6"
+                          />
+                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                            Spec: {player.allStars?.[0]?.spec || 'N/A'}
+                          </span>
+                        </td>
+                      
+                        <td className="p-3 gear-cell">
+                          <div className="flex flex-wrap gap-2">
+                            {player.gear.length > 0 ? (
+                              player.gear.map((item, index) => {
+                                const itemId = item.item ? item.item.id : 'unknown';
+                                const iconName = itemIconMap[itemId] || 'inv_misc_questionmark';
+                                let wowheadData = `item=${itemId}&domain=classic`;
+                                if (item.enchantments && item.enchantments.length > 0) {
+                                  const enchIds = item.enchantments.map(ench => ench.enchantment_id).join('.');
+                                  wowheadData += `&ench=${enchIds}`;
+                                }
+                                return (
+                                  <a
+                                    key={index}
+                                    href={`https://www.wowhead.com/classic/item=${itemId}`}
+                                    data-wowhead={wowheadData}
+                                  >
+                                    <img
+                                      src={`https://wow.zamimg.com/images/wow/icons/small/${iconName}.jpg`}
+                                      alt={item.name || 'Unknown Item'}
+                                      title={item.name || 'Unknown Item'}
+                                    />
+                                  </a>
+                                );
+                              })
+                            ) : (
+                              <span>No gear data available.</span>
+                            )}
+                          </div>
+                        </td>
                       </tr>
-                      {expandedRows[player.n] && player.allStars?.slice(1).map((spec, index) => (
-                        <tr key={`${player.n}-${index}`} className="border-t border-gray-800 bg-gray-700">
-                          <td className="p-3 pl-6 italic">{player.n || 'Unknown'}</td>
-                          <td className="p-3">{player.discord_names}</td>
-                          <td className="p-3">{player.server_names}</td>
-                          <td className="p-3">{formatNumber(spec.rankPercent)}</td>
-                          <td className="p-3">{formatNumber(spec.points)}</td>
-                          <td className="p-3">{spec.spec || 'N/A'}</td>
-                          <td className="p-3">{player.mt?.toUpperCase() || 'N/A'}</td>
-                          <td className="p-3">-</td>
-                        </tr>
-                      ))}
+                      {expandedRows[player.n] && (
+                        player.allStars?.slice(1).map((spec, index) => (
+                          <tr key={`${player.n}-${index}`} className="border-t border-gray-800 bg-gray-700">
+                            <td className="p-3 pl-6 italic">{player.n || 'Unknown'}</td>
+                            <td className="p-3 group relative">
+                              {player.server_names}
+                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                                Discord: {player.discord_names}
+                              </span>
+                            </td>
+                            <td className="p-3">{formatNumber(spec.rankPercent)}</td>
+                            <td className="p-3">{formatNumber(spec.points)}</td>
+                            <td className="p-3 flex items-center gap-2">
+                          <img
+                            src={getSpecIcon(player.allStars?.[0]?.spec)}
+                            alt={player.allStars?.[0]?.spec || 'Unknown Spec'}
+                            className="w-6 h-6"
+                          />
+                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                            Spec: {player.allStars?.[0]?.spec || 'N/A'}
+                          </span>
+                            </td>
+                            <td className="p-3">-</td>
+                          </tr>
+                        ))
+                      )}
                     </React.Fragment>
                   ))}
                 </tbody>
