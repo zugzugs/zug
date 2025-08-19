@@ -14,7 +14,6 @@
         border-radius: 0.375rem; /* Tailwind's rounded-md */
         border: 3px solid #131212; /* Tailwind's border-gray600 */
     }
-
   </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
@@ -26,7 +25,7 @@
       const [gearData, setGearData] = React.useState([]);
       const [itemIconMap, setItemIconMap] = React.useState({});
       const [searchTerm, setSearchTerm] = React.useState('');
-      const [sortConfig, setSortConfig] = React.useState({ key: 'n', direction: 'asc' });
+      const [sortConfig, setSortConfig] = React.useState({ key: 'bpa', direction: 'desc' });
       const [error, setError] = React.useState(null);
       const [expandedRows, setExpandedRows] = React.useState({});
 
@@ -36,11 +35,39 @@
         protection: "https://cdn.discordapp.com/emojis/637564444834136065.png",
         assassination: "https://cdn.discordapp.com/emojis/637564351707873324.png",
         fury: "https://cdn.discordapp.com/emojis/637564445215948810.png",
+        arms: "https://cdn.discordapp.com/emojis/637564445031399474.png",
         enhancement: "https://cdn.discordapp.com/emojis/936357056951222322.png",
         destruction: "https://cdn.discordapp.com/emojis/637564406682877964.png",
+        affliction: "https://cdn.discordapp.com/emojis/637564406984867861.png",
+        demonology: "https://cdn.discordapp.com/emojis/637564407001513984.png",
         balance: "https://cdn.discordapp.com/emojis/637564171994529798.png",
+        beastmastery: "https://cdn.discordapp.com/emojis/637564202021814277.png",
         survival: "https://cdn.discordapp.com/emojis/637564202130866186.png",
+        melee: "https://cdn.discordapp.com/emojis/637564202130866186.png",
+        marksmanship: "https://cdn.discordapp.com/emojis/637564202084466708.png",
+        guardian: "https://cdn.discordapp.com/emojis/637564171696734209.png",
+        feral: "https://cdn.discordapp.com/emojis/637564172061900820.png",
+        combat: "https://cdn.discordapp.com/emojis/637564352333086720.png",
+        subtlety: "https://cdn.discordapp.com/emojis/637564352169508892.png",
+        arcane: "https://cdn.discordapp.com/emojis/637564231545389056.png",
+        shadow: "https://cdn.discordapp.com/emojis/637564323291725825.png",
+        fire: "https://cdn.discordapp.com/emojis/637564231239073802.png",
+        frost: "https://cdn.discordapp.com/emojis/637564231469891594.png",
+        discipline: "https://cdn.discordapp.com/emojis/637564323442720768.png",
+        holy: "https://cdn.discordapp.com/emojis/637564323530539019.png",
         default: "https://wow.zamimg.com/images/wow/icons/small/inv_misc_questionmark.jpg"
+      };
+
+      // Function to get Tailwind CSS text color class based on parse percentile
+      const getParseColor = (percent) => {
+        if (typeof percent !== 'number' || isNaN(percent)) return 'text-white';
+        if (percent === 100) return 'text-amber-100';
+        if (percent >= 99) return 'text-pink-400';
+        if (percent >= 95) return 'text-orange-500';
+        if (percent >= 75) return 'text-purple-600';
+        if (percent >= 50) return 'text-blue-500';
+        if (percent >= 25) return 'text-green-500';
+        return 'text-gray-400';
       };
 
       // Fetch data from JSON files
@@ -96,23 +123,16 @@
           if (!playerName) return;
           const playerStats = playerData.find(p => p.n && p.n.toLowerCase() === playerName.toLowerCase());
           if (playerStats) {
-            // Normalize server names for matching
             const normalizedServerNames = (playerInfo.server_names || []).map(name => 
               name && typeof name === 'string' ? name.toLowerCase().replace(/\s+/g, '-') : ''
             ).filter(name => name);
-            // Find matching gear data (case-insensitive name, optional realm match)
             const gear = gearData.find(g => {
               if (!g.name) {
                 console.warn('Invalid gear entry (missing name):', g);
                 return false;
               }
               const nameMatch = g.name.toLowerCase() === playerName.toLowerCase();
-              const realm = g.character?.realm?.name || g.character?.realm?.slug || '';
-              const normalizedRealm = typeof realm === 'string' ? realm.toLowerCase().replace(/\s+/g, '-') : '';
-              const realmMatch = normalizedServerNames.length === 0 || !realm || 
-                normalizedServerNames.includes(normalizedRealm);
-              console.log(`Comparing: ${g.name} vs ${playerName}, ${normalizedRealm || 'no realm'} vs [${normalizedServerNames.join(', ')}] -> ${nameMatch && realmMatch}`);
-              return nameMatch && realmMatch;
+              return nameMatch;
             });
             console.log(`Matching gear for ${playerName} (${normalizedServerNames.join(', ')}):`, gear || 'No gear found');
             combinedData.push({
@@ -138,20 +158,43 @@
 
       const sortedData = [...filteredData].sort((a, b) => {
         const getValue = (obj, key) => {
-          /*if (key === 'spec') return obj.allStars?.[0]?.spec || '';*/
-          if (key === 'bpa') return typeof obj.bpa === 'number' ? obj.bpa : (obj.allStars?.[0]?.rankPercent || -Infinity);
-          if (key === 'mpa') return typeof obj.mpa === 'number' ? obj.mpa : (obj.allStars?.[0]?.points || -Infinity);
+          if (key === 'bpa') {
+            const rankPercent = obj.allStars?.[0]?.rankPercent;
+            return typeof rankPercent === 'number' && !isNaN(rankPercent) ? rankPercent : 0;
+          }
+          if (key === 'mpa') {
+            const points = obj.allStars?.[0]?.points;
+            return typeof points === 'number' && !isNaN(points) ? points : 0;
+          }
           if (key === 'extraSpecs') return typeof obj.extraSpecs === 'number' ? obj.extraSpecs : 0;
           return obj[key] || '';
         };
         const aValue = getValue(a, sortConfig.key);
         const bValue = getValue(b, sortConfig.key);
-        console.log(`Sorting by ${sortConfig.key}: ${a.n} (${aValue}) vs ${b.n} (${bValue})`);
+
+        // Primary sort by the configured key
+        if (sortConfig.key === 'bpa') {
+          // If bpa values are equal, use mpa (points) as tiebreaker
+          if (aValue === bValue) {
+            const aPoints = getValue(a, 'mpa');
+            const bPoints = getValue(b, 'mpa');
+            return sortConfig.direction === 'asc'
+              ? aPoints - bPoints
+              : bPoints - aPoints;
+          }
+          return sortConfig.direction === 'asc'
+            ? aValue - bValue
+            : bValue - aValue;
+        }
+
+        // Handle string sorting for other keys
         if (typeof aValue === 'string' && typeof bValue === 'string') {
           return sortConfig.direction === 'asc'
             ? aValue.localeCompare(bValue)
             : bValue.localeCompare(aValue);
         }
+
+        // Numeric sorting for other keys
         return sortConfig.direction === 'asc'
           ? aValue - bValue
           : bValue - aValue;
@@ -220,7 +263,6 @@
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('spec')}>
                       Spec {sortConfig.key === 'spec' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-
                     <th className="p-3">Gear</th>
                   </tr>
                 </thead>
@@ -238,7 +280,9 @@
                             Discord: {player.discord_names}
                           </span>
                         </td>
-                        <td className="p-3">{formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}</td>
+                        <td className={`p-3 ${getParseColor(player.allStars?.[0]?.rankPercent)}`}>
+                          {formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}
+                        </td>
                         <td className="p-3">{formatNumber(player.allStars?.[0]?.points || 'N/A')}</td>
                         <td className="p-3 group relative">
                           <img
@@ -250,7 +294,6 @@
                             Spec: {player.allStars?.[0]?.spec || 'N/A'}
                           </span>
                         </td>
-                      
                         <td className="p-3 gear-cell">
                           <div className="flex flex-wrap gap-2">
                             {player.gear.length > 0 ? (
@@ -292,17 +335,19 @@
                                 Discord: {player.discord_names}
                               </span>
                             </td>
-                            <td className="p-3">{formatNumber(spec.rankPercent)}</td>
+                            <td className={`p-3 ${getParseColor(spec.rankPercent)}`}>
+                              {formatNumber(spec.rankPercent)}
+                            </td>
                             <td className="p-3">{formatNumber(spec.points)}</td>
-                            <td className="p-3 flex items-center gap-2">
-                          <img
-                            src={getSpecIcon(player.allStars?.[0]?.spec)}
-                            alt={player.allStars?.[0]?.spec || 'Unknown Spec'}
-                            className="w-6 h-6"
-                          />
-                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
-                            Spec: {player.allStars?.[0]?.spec || 'N/A'}
-                          </span>
+                            <td className="p-3 group relative flex items-center gap-2">
+                              <img
+                                src={getSpecIcon(spec.spec)}
+                                alt={spec.spec || 'Unknown Spec'}
+                                className="w-6 h-6"
+                              />
+                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                                Spec: {spec.spec || 'N/A'}
+                              </span>
                             </td>
                             <td className="p-3">-</td>
                           </tr>
