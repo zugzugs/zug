@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tjolas Ultra Super Duper Stats Dashboard</title>
+  <title>Tjollas Ultra Super Duper Stats Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.6/babel.min.js"></script>
@@ -45,7 +45,8 @@
             combinedData.push({
               ...playerStats,
               discord_names: playerInfo.discord_names.join(', '),
-              server_names: playerInfo.server_names.join(', ')
+              server_names: playerInfo.server_names.join(', '),
+              extraSpecs: playerStats.allStars ? Math.max(0, playerStats.allStars.length - 1) : 0
             });
           }
         });
@@ -105,7 +106,7 @@
       return (
         <div className="min-h-screen bg-gray-900 p-6">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold text-blue-400 mb-6">Tjolas Ultra Super Duper Stats Dashboard</h1>
+            <h1 className="text-3xl font-bold text-blue-400 mb-6">Tjollas Ultra Super Duper Stats Dashboard</h1>
             <input
               type="text"
               placeholder="Search by Player, Discord, Server Name, or Spec..."
@@ -127,15 +128,18 @@
                       Server Name {sortConfig.key === 'server_names' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('bpa')}>
-                      % {sortConfig.key === 'bpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                      BPA {sortConfig.key === 'bpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('mpa')}>
-                      Points {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                      MPA {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('spec')}>
                       Spec {sortConfig.key === 'spec' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3">Role</th>
+                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('extraSpecs')}>
+                      Extra Specs {sortConfig.key === 'extraSpecs' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -152,6 +156,7 @@
                         <td className="p-3">{formatNumber(player.allStars?.[0]?.points || 'N/A')}</td>
                         <td className="p-3">{player.allStars?.[0]?.spec || 'N/A'}</td>
                         <td className="p-3">{player.mt?.toUpperCase() || 'N/A'}</td>
+                        <td className="p-3">{player.extraSpecs > 0 ? `+${player.extraSpecs}` : '0'}</td>
                       </tr>
                       {expandedRows[player.n] && player.allStars?.slice(1).map((spec, index) => (
                         <tr key={`${player.n}-${index}`} className="border-t border-gray-800 bg-gray-700">
@@ -162,6 +167,7 @@
                           <td className="p-3">{formatNumber(spec.points)}</td>
                           <td className="p-3">{spec.spec || 'N/A'}</td>
                           <td className="p-3">{player.mt?.toUpperCase() || 'N/A'}</td>
+                          <td className="p-3">-</td>
                         </tr>
                       ))}
                     </React.Fragment>
