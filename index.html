@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Tjollas Ultra Super Duper Stats Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
@@ -13,6 +13,37 @@
     img {
         border-radius: 0.375rem; /* Tailwind's rounded-md */
         border: 3px solid #131212; /* Tailwind's border-gray600 */
+    }
+    /* Hide table headers on mobile, show labels in cells */
+    @media (max-width: 640px) {
+      thead {
+        display: none;
+      }
+      tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #374151; /* border-gray-700 */
+      }
+      td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        position: relative;
+      }
+      td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 0.5rem;
+        flex: 0 0 40%;
+      }
+      .gear-cell {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .gear-cell .flex {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -227,20 +258,20 @@
 
       if (error) {
         return (
-          <div className="min-h-screen bg-gray-900 p-6 flex items-center justify-center">
-            <div className="text-red-400 text-xl">{error}</div>
+          <div className="min-h-screen bg-gray-900 p-4 sm:p-6 flex items-center justify-center">
+            <div className="text-red-400 text-lg sm:text-xl">Failed to load data. Please check the JSON files.</div>
           </div>
         );
       }
 
       return (
-        <div className="min-h-screen bg-gray-900 p-6">
-          <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold text-blue-400 mb-6">Tjollas Ultra Super Duper Stats Dashboard</h1>
+        <div className="min-h-screen bg-gray-900 p-4 sm:p-6">
+          <div className="max-w-full sm:max-w-7xl mx-auto">
+            <h1 className="text-2xl sm:text-3xl font-bold text-blue-400 mb-4 sm:mb-6">Tjollas Ultra Super Duper Stats Dashboard</h1>
             <input
               type="text"
               placeholder="Search by Player, Server Name, or Spec..."
-              className="w-full p-2 mb-4 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -248,23 +279,22 @@
               <table className="w-full text-left border-collapse bg-gray-800 rounded-lg">
                 <thead>
                   <tr className="bg-gray-700">
-                    
-                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('spec')}>
+                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('spec')}>
                       Spec {sortConfig.key === 'spec' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('n')}>
+                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('n')}>
                       Player Name {sortConfig.key === 'n' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('server_names')}>
+                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('server_names')}>
                       Discord Name {sortConfig.key === 'server_names' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('bpa')}>
+                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('bpa')}>
                       % {sortConfig.key === 'bpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('mpa')}>
+                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('mpa')}>
                       Server Rank {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-3">Gear</th>
+                    <th className="p-2 sm:p-3">Gear</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -276,7 +306,7 @@
                         }`}
                         onClick={() => player.extraSpecs > 0 && toggleRow(player.n)}
                       >
-                      <td className="p-3 group relative flex items-center gap-2">
+                        <td data-label="Spec" className="p-2 sm:p-3 group relative flex items-center gap-2">
                           <div className="flex items-center gap-2">
                             <img
                               src={getSpecIcon(player.allStars?.[0]?.spec)}
@@ -291,24 +321,25 @@
                               </span>
                             )}
                           </div>
-                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
                             Spec: {player.allStars?.[0]?.spec || 'N/A'}
                           </span>
                         </td>  
-                      <td className="p-3">{player.n || 'Unknown'}</td>
-                        <td className="p-3 group relative">
+                        <td data-label="Player Name" className="p-2 sm:p-3">{player.n || 'Unknown'}</td>
+                        <td data-label="Discord Name" className="p-2 sm:p-3 group relative">
                           {player.server_names}
-                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
                             Discord: {player.discord_names}
                           </span>
                         </td>
-                        <td className={`p-3 ${getParseColor(player.allStars?.[0]?.rankPercent)}`}>
+                        <td data-label="%" className={`p-2 sm:p-3 ${getParseColor(player.allStars?.[0]?.rankPercent)}`}>
                           {formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}
                         </td>
-                        <td className="p-3 group flex items-center justify-center">{player.allStars?.[0]?.serverRank}</td>
-                        
-                        <td className="p-3 gear-cell">
-                          <div className="flex flex-wrap gap-2">
+                        <td data-label="Server Rank" className="p-2 sm:p-3 group flex items-center justify-center sm:justify-start">
+                          {player.allStars?.[0]?.serverRank}
+                        </td>
+                        <td data-label="Gear" className="p-2 sm:p-3 gear-cell">
+                          <div className="flex flex-wrap gap-2 sm:flex-row flex-col">
                             {player.gear.length > 0 ? (
                               player.gear.map((item, index) => {
                                 const itemId = item.item ? item.item.id : 'unknown';
@@ -328,6 +359,7 @@
                                       src={`https://wow.zamimg.com/images/wow/icons/small/${iconName}.jpg`}
                                       alt={item.name || 'Unknown Item'}
                                       title={item.name || 'Unknown Item'}
+                                      className="w-8 h-8 sm:w-10 h-10"
                                     />
                                   </a>
                                 );
@@ -341,28 +373,30 @@
                       {expandedRows[player.n] && (
                         player.allStars?.slice(1).map((spec, index) => (
                           <tr key={`${player.n}-${index}`} className="border-t border-gray-800 bg-gray-700">
-                            <td className="p-3 group relative flex items-center gap-2">
+                            <td data-label="Spec" className="p-2 sm:p-3 group relative flex items-center gap-2">
                               <img
                                 src={getSpecIcon(spec.spec)}
                                 alt={spec.spec || 'Unknown Spec'}
                                 className="w-6 h-6"
                               />
-                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
                                 Spec: {spec.spec || 'N/A'}
                               </span>
-                            </td>
-                            <td className="p-3 pl-6 italic">{player.n || 'Unknown'}</td>
-                            <td className="p-3 group relative">
+                            </div>
+                            <td data-label="Player Name" className="p-2 sm:p-3 pl-6 italic">{player.n || 'Unknown'}</td>
+                            <td data-label="Discord Name" className="p-2 sm:p-3 group relative">
                               {player.server_names}
-                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
                                 Discord: {player.discord_names}
                               </span>
                             </td>
-                            <td className={`p-3 ${getParseColor(spec.rankPercent)}`}>
+                            <td data-label="%" className={`p-2 sm:p-3 ${getParseColor(spec.rankPercent)}`}>
                               {formatNumber(spec.rankPercent)}
                             </td>
-                            <td className="p-3 group flex items-center justify-center">{player.allStars?.serverRank}</td>
-                            <td className="p-3">-</td>
+                            <td data-label="Server Rank" className="p-2 sm:p-3 group flex items-center justify-center sm:justify-start">
+                              {player.allStars?.serverRank}
+                            </td>
+                            <td data-label="Gear" className="p-2 sm:p-3">-</td>
                           </tr>
                         ))
                       )}
