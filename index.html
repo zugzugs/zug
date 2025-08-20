@@ -256,13 +256,13 @@
                       Player Name {sortConfig.key === 'n' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('server_names')}>
-                      Server Name {sortConfig.key === 'server_names' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                      Discord Name {sortConfig.key === 'server_names' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('bpa')}>
                       % {sortConfig.key === 'bpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('mpa')}>
-                      Points {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                      Server Rank {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3">Gear</th>
                   </tr>
@@ -305,7 +305,7 @@
                         <td className={`p-3 ${getParseColor(player.allStars?.[0]?.rankPercent)}`}>
                           {formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}
                         </td>
-                        <td className="p-3">{formatNumber(player.allStars?.[0]?.points || 'N/A')}</td>
+                        <td className="p-3 group flex items-center justify-center">{player.allStars?.[0]?.serverRank}</td>
                         
                         <td className="p-3 gear-cell">
                           <div className="flex flex-wrap gap-2">
@@ -361,7 +361,7 @@
                             <td className={`p-3 ${getParseColor(spec.rankPercent)}`}>
                               {formatNumber(spec.rankPercent)}
                             </td>
-                            <td className="p-3">{formatNumber(spec.points)}</td>
+                            <td className="p-3 group flex items-center justify-center">{player.allStars?.serverRank}</td>
                             <td className="p-3">-</td>
                           </tr>
                         ))
