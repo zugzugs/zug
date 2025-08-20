@@ -10949,6 +10949,100 @@
     }
   },
   {
+    "n": "Nídus",
+    "bpa": 35.14481653146286,
+    "mpa": 28.502218881610577,
+    "zo": 2018,
+    "cl": 8,
+    "mt": "dps",
+    "allStars": [
+      {
+        "spec": "Assassination",
+        "points": 334.724,
+        "possiblePoints": 840,
+        "rank": 5312,
+        "regionRank": 2044,
+        "serverRank": 1418,
+        "rankPercent": 47.99765005385293,
+        "total": 10213
+      }
+    ],
+    "pa": {
+      "b_3185": {
+        "rankPercent": 48.260230297912,
+        "rank": 4946,
+        "spec": "Assassination",
+        "points": 55.75,
+        "possiblePoints": 120,
+        "serverRank": 1379,
+        "regionRank": 1961
+      },
+      "b_3187": {
+        "rankPercent": 20.562344633042,
+        "rank": 7284,
+        "spec": "Assassination",
+        "points": 0,
+        "possiblePoints": 0,
+        "serverRank": 2061,
+        "regionRank": 2966
+      },
+      "b_3186": {
+        "rankPercent": 29.567225697956,
+        "rank": 6143,
+        "spec": "Assassination",
+        "points": 41.49,
+        "possiblePoints": 120,
+        "serverRank": 1659,
+        "regionRank": 2396
+      },
+      "b_3197": {
+        "rankPercent": 33.636294383522,
+        "rank": 5721,
+        "spec": "Assassination",
+        "points": 40.79,
+        "possiblePoints": 120,
+        "serverRank": 1576,
+        "regionRank": 2260
+      },
+      "b_3196": {
+        "rankPercent": 37.999474112351,
+        "rank": 5406,
+        "spec": "Assassination",
+        "points": 44.68,
+        "possiblePoints": 120,
+        "serverRank": 1462,
+        "regionRank": 2079
+      },
+      "b_3188": {
+        "rankPercent": 40.74587678313,
+        "rank": 4734,
+        "spec": "Assassination",
+        "points": 48.23,
+        "possiblePoints": 120,
+        "serverRank": 1269,
+        "regionRank": 1831
+      },
+      "b_3190": {
+        "rankPercent": 22.160081459074,
+        "rank": 6001,
+        "spec": "Assassination",
+        "points": 42.98,
+        "possiblePoints": 120,
+        "serverRank": 1619,
+        "regionRank": 2335
+      },
+      "b_3189": {
+        "rankPercent": 33.644532986295,
+        "rank": 4477,
+        "spec": "Assassination",
+        "points": 60.82,
+        "possiblePoints": 120,
+        "serverRank": 1178,
+        "regionRank": 1710
+      }
+    }
+  },
+  {
     "n": "Ociren",
     "bpa": 80.82842580000214,
     "mpa": 76.84201009559929,

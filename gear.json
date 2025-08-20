@@ -3663,6 +3663,300 @@
             }
         },
         {
+            "name": "Nídus",
+            "equipment": {
+                "equipped_items": [
+                    {
+                        "item": {
+                            "id": 239560
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Enchanted: Stamina +20/Agility +10/Hit +1%",
+                                "enchantment_id": 7625,
+                                "enchantment_slot": {
+                                    "id": 0,
+                                    "type": "PERMANENT"
+                                }
+                            },
+                            {
+                                "display_string": "Honor Among Thieves",
+                                "enchantment_id": 7131,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 234813
+                        },
+                        "enchantments": []
+                    },
+                    {
+                        "item": {
+                            "id": 239559
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Efficient Striking",
+                                "enchantment_id": 7698,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 6136
+                        },
+                        "enchantments": []
+                    },
+                    {
+                        "item": {
+                            "id": 233389
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Enchanted: Living Stats",
+                                "enchantment_id": 7645,
+                                "enchantment_slot": {
+                                    "id": 0,
+                                    "type": "PERMANENT"
+                                }
+                            },
+                            {
+                                "display_string": "Deadly Brew",
+                                "enchantment_id": 6708,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 239556
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Poisoned Knife",
+                                "enchantment_id": 7018,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 239561
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Enchanted: Stamina +20/Agility +10/Hit +1%",
+                                "enchantment_id": 7625,
+                                "enchantment_slot": {
+                                    "id": 0,
+                                    "type": "PERMANENT"
+                                }
+                            },
+                            {
+                                "display_string": "Envenom",
+                                "enchantment_id": 6787,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 233391
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Enchanted: Agility +7",
+                                "enchantment_id": 1887,
+                                "enchantment_slot": {
+                                    "id": 0,
+                                    "type": "PERMANENT"
+                                }
+                            },
+                            {
+                                "display_string": "Waylay",
+                                "enchantment_id": 6914,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 239555
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Enchanted: +9 Agility",
+                                "enchantment_id": 7656,
+                                "enchantment_slot": {
+                                    "id": 0,
+                                    "type": "PERMANENT"
+                                }
+                            },
+                            {
+                                "display_string": "Carnage",
+                                "enchantment_id": 7133,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 239557
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Enchanted: Agility +15",
+                                "enchantment_id": 2564,
+                                "enchantment_slot": {
+                                    "id": 0,
+                                    "type": "PERMANENT"
+                                }
+                            },
+                            {
+                                "display_string": "Mutilate",
+                                "enchantment_id": 6715,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 233434
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Dagger Specialization",
+                                "enchantment_id": 7510,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 235885
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Nature Specialization",
+                                "enchantment_id": 7517,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 230250
+                        },
+                        "enchantments": []
+                    },
+                    {
+                        "item": {
+                            "id": 242310
+                        },
+                        "enchantments": []
+                    },
+                    {
+                        "item": {
+                            "id": 233432
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Enchanted: +5 Agility",
+                                "enchantment_id": 7667,
+                                "enchantment_slot": {
+                                    "id": 0,
+                                    "type": "PERMANENT"
+                                }
+                            },
+                            {
+                                "display_string": "Crimson Tempest",
+                                "enchantment_id": 6911,
+                                "enchantment_slot": {
+                                    "id": 1,
+                                    "type": "TEMPORARY"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 236343
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Enchanted: Grand Crusader",
+                                "enchantment_id": 7940,
+                                "enchantment_slot": {
+                                    "id": 0,
+                                    "type": "PERMANENT"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 235006
+                        },
+                        "enchantments": [
+                            {
+                                "display_string": "Enchanted: Grand Crusader",
+                                "enchantment_id": 7940,
+                                "enchantment_slot": {
+                                    "id": 0,
+                                    "type": "PERMANENT"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "item": {
+                            "id": 240925
+                        },
+                        "enchantments": []
+                    },
+                    {
+                        "item": {
+                            "id": 22999
+                        },
+                        "enchantments": []
+                    }
+                ]
+            }
+        },
+        {
             "name": "Systixs",
             "equipment": {
                 "equipped_items": [
@@ -46982,8 +47276,8 @@
                                 }
                             },
                             {
-                                "display_string": "Focused Attacks",
-                                "enchantment_id": 7129,
+                                "display_string": "Honor Among Thieves",
+                                "enchantment_id": 7131,
                                 "enchantment_slot": {
                                     "id": 1,
                                     "type": "TEMPORARY"
@@ -47051,12 +47345,12 @@
                     },
                     {
                         "item": {
-                            "id": 236029
+                            "id": 241175
                         },
                         "enchantments": [
                             {
-                                "display_string": "Shadowstep",
-                                "enchantment_id": 6719,
+                                "display_string": "Poisoned Knife",
+                                "enchantment_id": 7018,
                                 "enchantment_slot": {
                                     "id": 1,
                                     "type": "TEMPORARY"
@@ -47078,8 +47372,8 @@
                                 }
                             },
                             {
-                                "display_string": "Between the Eyes",
-                                "enchantment_id": 6709,
+                                "display_string": "Envenom",
+                                "enchantment_id": 6787,
                                 "enchantment_slot": {
                                     "id": 1,
                                     "type": "TEMPORARY"
@@ -47089,20 +47383,20 @@
                     },
                     {
                         "item": {
-                            "id": 236314
+                            "id": 239558
                         },
                         "enchantments": [
                             {
-                                "display_string": "Enchanted: Minor Speed Increase",
-                                "enchantment_id": 911,
+                                "display_string": "Enchanted: Agility +7",
+                                "enchantment_id": 1887,
                                 "enchantment_slot": {
                                     "id": 0,
                                     "type": "PERMANENT"
                                 }
                             },
                             {
-                                "display_string": "Rolling with the Punches",
-                                "enchantment_id": 6714,
+                                "display_string": "Master of Subtlety",
+                                "enchantment_id": 7019,
                                 "enchantment_slot": {
                                     "id": 1,
                                     "type": "TEMPORARY"
@@ -47188,13 +47482,13 @@
                     },
                     {
                         "item": {
-                            "id": 231287
+                            "id": 236334
                         },
                         "enchantments": []
                     },
                     {
                         "item": {
-                            "id": 228093
+                            "id": 242310
                         },
                         "enchantments": []
                     },
@@ -52938,7 +53232,6 @@
         }
     ],
     "errors": [
-        "Failed to fetch equipment for Nìdus on living-flame: 404 {\"code\":404,\"type\":\"BLZWEBAPI00000404\",\"detail\":\"Not Found\"}",
         "Failed to fetch equipment for Daedt on living-flame: 404 {\"code\":404,\"type\":\"BLZWEBAPI00000404\",\"detail\":\"Not Found\"}"
     ]
 }
