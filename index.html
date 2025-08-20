@@ -248,6 +248,10 @@
               <table className="w-full text-left border-collapse bg-gray-800 rounded-lg">
                 <thead>
                   <tr className="bg-gray-700">
+                    
+                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('spec')}>
+                      Spec {sortConfig.key === 'spec' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                    </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('n')}>
                       Player Name {sortConfig.key === 'n' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
@@ -259,9 +263,6 @@
                     </th>
                     <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('mpa')}>
                       Points {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-                    </th>
-                    <th className="p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('spec')}>
-                      Spec {sortConfig.key === 'spec' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
                     <th className="p-3">Gear</th>
                   </tr>
@@ -275,18 +276,7 @@
                         }`}
                         onClick={() => player.extraSpecs > 0 && toggleRow(player.n)}
                       >
-                        <td className="p-3">{player.n || 'Unknown'}</td>
-                        <td className="p-3 group relative">
-                          {player.server_names}
-                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
-                            Discord: {player.discord_names}
-                          </span>
-                        </td>
-                        <td className={`p-3 ${getParseColor(player.allStars?.[0]?.rankPercent)}`}>
-                          {formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}
-                        </td>
-                        <td className="p-3">{formatNumber(player.allStars?.[0]?.points || 'N/A')}</td>
-                        <td className="p-3 group relative flex items-center gap-2">
+                      <td className="p-3 group relative flex items-center gap-2">
                           <div className="flex items-center gap-2">
                             <img
                               src={getSpecIcon(player.allStars?.[0]?.spec)}
@@ -304,7 +294,19 @@
                           <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
                             Spec: {player.allStars?.[0]?.spec || 'N/A'}
                           </span>
+                        </td>  
+                      <td className="p-3">{player.n || 'Unknown'}</td>
+                        <td className="p-3 group relative">
+                          {player.server_names}
+                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                            Discord: {player.discord_names}
+                          </span>
                         </td>
+                        <td className={`p-3 ${getParseColor(player.allStars?.[0]?.rankPercent)}`}>
+                          {formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}
+                        </td>
+                        <td className="p-3">{formatNumber(player.allStars?.[0]?.points || 'N/A')}</td>
+                        
                         <td className="p-3 gear-cell">
                           <div className="flex flex-wrap gap-2">
                             {player.gear.length > 0 ? (
@@ -339,6 +341,16 @@
                       {expandedRows[player.n] && (
                         player.allStars?.slice(1).map((spec, index) => (
                           <tr key={`${player.n}-${index}`} className="border-t border-gray-800 bg-gray-700">
+                            <td className="p-3 group relative flex items-center gap-2">
+                              <img
+                                src={getSpecIcon(spec.spec)}
+                                alt={spec.spec || 'Unknown Spec'}
+                                className="w-6 h-6"
+                              />
+                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
+                                Spec: {spec.spec || 'N/A'}
+                              </span>
+                            </td>
                             <td className="p-3 pl-6 italic">{player.n || 'Unknown'}</td>
                             <td className="p-3 group relative">
                               {player.server_names}
@@ -350,16 +362,6 @@
                               {formatNumber(spec.rankPercent)}
                             </td>
                             <td className="p-3">{formatNumber(spec.points)}</td>
-                            <td className="p-3 group relative flex items-center gap-2">
-                              <img
-                                src={getSpecIcon(spec.spec)}
-                                alt={spec.spec || 'Unknown Spec'}
-                                className="w-6 h-6"
-                              />
-                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-700 text-white text-sm rounded py-1 px-2 z-10">
-                                Spec: {spec.spec || 'N/A'}
-                              </span>
-                            </td>
                             <td className="p-3">-</td>
                           </tr>
                         ))
