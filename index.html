@@ -222,7 +222,7 @@
         if (typeof aValue === 'string' && typeof bValue === 'string') {
           return sortConfig.direction === 'asc'
             ? aValue.localeCompare(bValue)
-            : bValue.localeCompare(aValue);
+            : bValue.localeCompare(bValue);
         }
 
         // Numeric sorting for other keys
@@ -324,7 +324,7 @@
                           <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
                             Spec: {player.allStars?.[0]?.spec || 'N/A'}
                           </span>
-                        </td>  
+                        </td>
                         <td data-label="Player Name" className="p-2 sm:p-3">{player.n || 'Unknown'}</td>
                         <td data-label="Discord Name" className="p-2 sm:p-3 group relative">
                           {player.server_names}
@@ -370,36 +370,36 @@
                           </div>
                         </td>
                       </tr>
-                      {expandedRows[player.n] && (
-                        player.allStars?.slice(1).map((spec, index) => (
-                          <tr key={`${player.n}-${index}`} className="border-t border-gray-800 bg-gray-700">
-                            <td data-label="Spec" className="p-2 sm:p-3 group relative flex items-center gap-2">
+                      {expandedRows[player.n] && player.allStars?.slice(1).map((spec, index) => (
+                        <tr key={`${player.n}-${index}`} className="border-t border-gray-800 bg-gray-700">
+                          <td data-label="Spec" className="p-2 sm:p-3 group relative flex items-center gap-2">
+                            <div className="flex items-center gap-2">
                               <img
                                 src={getSpecIcon(spec.spec)}
                                 alt={spec.spec || 'Unknown Spec'}
                                 className="w-6 h-6"
                               />
-                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
-                                Spec: {spec.spec || 'N/A'}
-                              </span>
                             </div>
-                            <td data-label="Player Name" className="p-2 sm:p-3 pl-6 italic">{player.n || 'Unknown'}</td>
-                            <td data-label="Discord Name" className="p-2 sm:p-3 group relative">
-                              {player.server_names}
-                              <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
-                                Discord: {player.discord_names}
-                              </span>
-                            </td>
-                            <td data-label="%" className={`p-2 sm:p-3 ${getParseColor(spec.rankPercent)}`}>
-                              {formatNumber(spec.rankPercent)}
-                            </td>
-                            <td data-label="Server Rank" className="p-2 sm:p-3 group flex items-center justify-center sm:justify-start">
-                              {player.allStars?.serverRank}
-                            </td>
-                            <td data-label="Gear" className="p-2 sm:p-3">-</td>
-                          </tr>
-                        ))
-                      )}
+                            <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
+                              Spec: {spec.spec || 'N/A'}
+                            </span>
+                          </td>
+                          <td data-label="Player Name" className="p-2 sm:p-3 pl-6 italic">{player.n || 'Unknown'}</td>
+                          <td data-label="Discord Name" className="p-2 sm:p-3 group relative">
+                            {player.server_names}
+                            <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
+                              Discord: {player.discord_names}
+                            </span>
+                          </td>
+                          <td data-label="%" className={`p-2 sm:p-3 ${getParseColor(spec.rankPercent)}`}>
+                            {formatNumber(spec.rankPercent)}
+                          </td>
+                          <td data-label="Server Rank" className="p-2 sm:p-3 group flex items-center justify-center sm:justify-start">
+                            {spec.serverRank || 'N/A'}
+                          </td>
+                          <td data-label="Gear" className="p-2 sm:p-3">-</td>
+                        </tr>
+                      ))}
                     </React.Fragment>
                   ))}
                 </tbody>
