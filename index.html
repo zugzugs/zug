@@ -12,37 +12,60 @@
   <style>
     img {
         border-radius: 0.375rem; /* Tailwind's rounded-md */
-        border: 3px solid #131212; /* Tailwind's border-gray600 */
+        border: 2px solid #1f2937; /* Tailwind's border-gray-800 */
     }
-    /* Hide table headers on mobile, show labels in cells */
+    /* Mobile table styling */
     @media (max-width: 640px) {
       thead {
         display: none;
       }
       tr {
-        display: block;
+        display: flex;
+        flex-wrap: wrap;
         margin-bottom: 1rem;
         border: 1px solid #374151; /* border-gray-700 */
+        border-radius: 0.5rem;
+        background-color: #1f2937; /* bg-gray-800 */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
       td {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         padding: 0.75rem;
-        position: relative;
+        width: 100%;
+        border-bottom: 1px solid #4b5563; /* border-gray-600 */
+      }
+      td:last-child {
+        border-bottom: none;
       }
       td:before {
         content: attr(data-label);
-        font-weight: bold;
+        font-weight: 600;
+        color: #9ca3af; /* text-gray-400 */
+        flex: 0 0 30%;
         margin-right: 0.5rem;
-        flex: 0 0 40%;
       }
       .gear-cell {
         flex-direction: column;
         align-items: flex-start;
       }
       .gear-cell .flex {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .spec-cell {
+        display: flex;
+        align-items: center;
+      }
+    }
+    /* Desktop table styling */
+    @media (min-width: 641px) {
+      td {
+        vertical-align: middle;
+      }
+      .gear-cell .flex {
+        gap: 0.5rem;
       }
     }
   </style>
@@ -92,12 +115,12 @@
       // Function to get Tailwind CSS text color class based on parse percentile
       const getParseColor = (percent) => {
         if (typeof percent !== 'number' || isNaN(percent)) return 'text-white';
-        if (percent === 100) return 'text-amber-100';
+        if (percent === 100) return 'text-amber-200';
         if (percent >= 99) return 'text-pink-400';
-        if (percent >= 95) return 'text-orange-500';
-        if (percent >= 75) return 'text-purple-600';
-        if (percent >= 50) return 'text-blue-500';
-        if (percent >= 25) return 'text-green-500';
+        if (percent >= 95) return 'text-orange-400';
+        if (percent >= 75) return 'text-purple-500';
+        if (percent >= 50) return 'text-blue-400';
+        if (percent >= 25) return 'text-green-400';
         return 'text-gray-400';
       };
 
@@ -122,10 +145,6 @@
           })
         ])
           .then(([playersData, playerData, gearData, materialsData]) => {
-            console.log('Fetched players.json:', playersData);
-            console.log('Fetched playerData.json:', playerData);
-            console.log('Fetched gear.json:', gearData);
-            console.log('Fetched materials.json:', materialsData);
             setPlayers(Array.isArray(playersData) ? playersData : []);
             setPlayerData(Array.isArray(playerData) ? playerData : []);
             setGearData(Array.isArray(gearData.players) ? gearData.players : []);
@@ -165,7 +184,6 @@
               const nameMatch = g.name.toLowerCase() === playerName.toLowerCase();
               return nameMatch;
             });
-            console.log(`Matching gear for ${playerName} (${normalizedServerNames.join(', ')}):`, gear || 'No gear found');
             combinedData.push({
               ...playerStats,
               discord_names: playerInfo.discord_names?.join(', ') || 'N/A',
@@ -173,8 +191,6 @@
               extraSpecs: playerStats.allStars ? Math.max(0, playerStats.allStars.length - 1) : 0,
               gear: gear && gear.equipment?.equipped_items ? gear.equipment.equipped_items : []
             });
-          } else {
-            console.warn(`No playerStats found for ${playerName}`);
           }
         });
       });
@@ -203,9 +219,7 @@
         const aValue = getValue(a, sortConfig.key);
         const bValue = getValue(b, sortConfig.key);
 
-        // Primary sort by the configured key
         if (sortConfig.key === 'bpa') {
-          // If bpa values are equal, use mpa (points) as tiebreaker
           if (aValue === bValue) {
             const aPoints = getValue(a, 'mpa');
             const bPoints = getValue(b, 'mpa');
@@ -218,14 +232,12 @@
             : bValue - aValue;
         }
 
-        // Handle string sorting for other keys
         if (typeof aValue === 'string' && typeof bValue === 'string') {
           return sortConfig.direction === 'asc'
             ? aValue.localeCompare(bValue)
-            : bValue.localeCompare(bValue);
+            : bValue.localeCompare(aValue);
         }
 
-        // Numeric sorting for other keys
         return sortConfig.direction === 'asc'
           ? aValue - bValue
           : bValue - aValue;
@@ -245,12 +257,10 @@
         }));
       };
 
-      // Format number safely
       const formatNumber = (value) => {
         return typeof value === 'number' && !isNaN(value) ? value.toFixed(2) : 'N/A';
       };
 
-      // Get spec icon URL
       const getSpecIcon = (spec) => {
         const normalizedSpec = spec?.toLowerCase() || '';
         return specIcons[normalizedSpec] || specIcons.default;
@@ -259,7 +269,7 @@
       if (error) {
         return (
           <div className="min-h-screen bg-gray-900 p-4 sm:p-6 flex items-center justify-center">
-            <div className="text-red-400 text-lg sm:text-xl">Failed to load data. Please check the JSON files.</div>
+            <div className="text-red-400 text-lg sm:text-xl font-semibold bg-gray-800 p-4 rounded-lg shadow-lg">Failed to load data. Please check the JSON files.</div>
           </div>
         );
       }
@@ -271,75 +281,77 @@
             <input
               type="text"
               placeholder="Search by Player, Server Name, or Spec..."
-              className="w-full p-2 mb-4 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+              className="w-full p-3 mb-4 bg-gray-800 text-white border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base placeholder-gray-400"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto shadow-lg rounded-lg">
               <table className="w-full text-left border-collapse bg-gray-800 rounded-lg">
-                <thead>
-                  <tr className="bg-gray-700">
-                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('spec')}>
+                <thead className="bg-gray-700 text-gray-200">
+                  <tr>
+                    <th className="p-3 sm:p-4 cursor-pointer hover:bg-gray-600 text-sm font-semibold" onClick={() => handleSort('spec')}>
                       Spec {sortConfig.key === 'spec' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('n')}>
-                      Player Name {sortConfig.key === 'n' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                    <th className="p-3 sm:p-4 cursor-pointer hover:bg-gray-600 text-sm font-semibold" onClick={() => handleSort('n')}>
+                      Player {sortConfig.key === 'n' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('server_names')}>
-                      Discord Name {sortConfig.key === 'server_names' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                    <th className="p-3 sm:p-4 cursor-pointer hover:bg-gray-600 text-sm font-semibold" onClick={() => handleSort('server_names')}>
+                      Discord {sortConfig.key === 'server_names' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('bpa')}>
+                    <th className="p-3 sm:p-4 cursor-pointer hover:bg-gray-600 text-sm font-semibold" onClick={() => handleSort('bpa')}>
                       % {sortConfig.key === 'bpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-2 sm:p-3 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('mpa')}>
-                      Server Rank {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                    <th className="p-3 sm:p-4 cursor-pointer hover:bg-gray-600 text-sm font-semibold" onClick={() => handleSort('mpa')}>
+                      Rank {sortConfig.key === 'mpa' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                     </th>
-                    <th className="p-2 sm:p-3">Gear</th>
+                    <th className="p-3 sm:p-4 text-sm font-semibold">Gear</th>
                   </tr>
                 </thead>
                 <tbody>
                   {sortedData.map(player => (
                     <React.Fragment key={player.n || Math.random()}>
                       <tr
-                        className={`border-t border-gray-700 hover:bg-gray-600 transition-colors duration-150 ${
+                        className={`border-t border-gray-700 hover:bg-gray-600 transition-colors duration-200 ${
                           player.extraSpecs > 0 ? 'cursor-pointer' : 'cursor-default'
                         }`}
                         onClick={() => player.extraSpecs > 0 && toggleRow(player.n)}
                       >
-                        <td data-label="Spec" className="p-2 sm:p-3 group relative flex items-center gap-2">
+                        <td data-label="Spec" className="p-3 sm:p-4 group relative spec-cell">
                           <div className="flex items-center gap-2">
                             <img
                               src={getSpecIcon(player.allStars?.[0]?.spec)}
                               alt={player.allStars?.[0]?.spec || 'Unknown Spec'}
-                              className="w-6 h-6"
+                              className="w-6 h-6 sm:w-7 sm:h-7"
                             />
                             {player.extraSpecs > 0 && (
                               <span
-                                className="bg-green-700 text-white text-xs font-bold rounded-full px-2 py-1 group-hover:bg-green-400 transition-colors"
+                                className="bg-green-600 text-white text-xs font-semibold rounded-full px-2 py-1 group-hover:bg-green-500 transition-colors"
                               >
                                 +{player.extraSpecs}
                               </span>
                             )}
                           </div>
-                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
+                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs rounded py-1 px-2 z-10 shadow-md">
                             Spec: {player.allStars?.[0]?.spec || 'N/A'}
                           </span>
                         </td>
-                        <td data-label="Player Name" className="p-2 sm:p-3">{player.n || 'Unknown'}</td>
-                        <td data-label="Discord Name" className="p-2 sm:p-3 group relative">
+                        <td data-label="Player Name" className="p-3 sm:p-4 text-sm sm:text-base font-medium">
+                          {player.n || 'Unknown'}
+                        </td>
+                        <td data-label="Discord Name" className="p-3 sm:p-4 group relative text-sm sm:text-base">
                           {player.server_names}
-                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
+                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs rounded py-1 px-2 z-10 shadow-md">
                             Discord: {player.discord_names}
                           </span>
                         </td>
-                        <td data-label="%" className={`p-2 sm:p-3 ${getParseColor(player.allStars?.[0]?.rankPercent)}`}>
+                        <td data-label="%" className={`p-3 sm:p-4 ${getParseColor(player.allStars?.[0]?.rankPercent)} text-sm sm:text-base font-medium`}>
                           {formatNumber(player.allStars?.[0]?.rankPercent || 'N/A')}
                         </td>
-                        <td data-label="Server Rank" className="p-2 sm:p-3 group flex items-center justify-center sm:justify-start">
-                          {player.allStars?.[0]?.serverRank}
+                        <td data-label="Rank" className="p-3 sm:p-4 text-sm sm:text-base font-medium text-center sm:text-left">
+                          {player.allStars?.[0]?.serverRank || 'N/A'}
                         </td>
-                        <td data-label="Gear" className="p-2 sm:p-3 gear-cell">
-                          <div className="flex flex-wrap gap-2 sm:flex-row flex-col">
+                        <td data-label="Gear" className="p-3 sm:p-4 gear-cell">
+                          <div className="flex flex-wrap gap-2">
                             {player.gear.length > 0 ? (
                               player.gear.map((item, index) => {
                                 const itemId = item.item ? item.item.id : 'unknown';
@@ -354,50 +366,53 @@
                                     key={index}
                                     href={`https://www.wowhead.com/classic/item=${itemId}`}
                                     data-wowhead={wowheadData}
+                                    className="group relative"
                                   >
                                     <img
                                       src={`https://wow.zamimg.com/images/wow/icons/small/${iconName}.jpg`}
                                       alt={item.name || 'Unknown Item'}
                                       title={item.name || 'Unknown Item'}
-                                      className="w-8 h-8 sm:w-10 h-10"
+                                      className="w-8 h-8 sm:w-9 sm:h-9 transition-transform group-hover:scale-110"
                                     />
                                   </a>
                                 );
                               })
                             ) : (
-                              <span>No gear data available.</span>
+                              <span className="text-gray-400 text-sm">No gear data available.</span>
                             )}
                           </div>
                         </td>
                       </tr>
                       {expandedRows[player.n] && player.allStars?.slice(1).map((spec, index) => (
-                        <tr key={`${player.n}-${index}`} className="border-t border-gray-800 bg-gray-700">
-                          <td data-label="Spec" className="p-2 sm:p-3 group relative flex items-center gap-2">
+                        <tr key={`${player.n}-${index}`} className="border-t border-gray-700 bg-gray-700 hover:bg-gray-600 transition-colors duration-200">
+                          <td data-label="Spec" className="p-3 sm:p-4 group relative spec-cell">
                             <div className="flex items-center gap-2">
                               <img
                                 src={getSpecIcon(spec.spec)}
                                 alt={spec.spec || 'Unknown Spec'}
-                                className="w-6 h-6"
+                                className="w-6 h-6 sm:w-7 sm:h-7"
                               />
                             </div>
-                            <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
+                            <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs rounded py-1 px-2 z-10 shadow-md">
                               Spec: {spec.spec || 'N/A'}
                             </span>
                           </td>
-                          <td data-label="Player Name" className="p-2 sm:p-3 pl-6 italic">{player.n || 'Unknown'}</td>
-                          <td data-label="Discord Name" className="p-2 sm:p-3 group relative">
+                          <td data-label="Player Name" className="p-3 sm:p-4 pl-6 italic text-sm sm:text-base font-medium">
+                            {player.n || 'Unknown'}
+                          </td>
+                          <td data-label="Discord Name" className="p-3 sm:p-4 group relative text-sm sm:text-base">
                             {player.server_names}
-                            <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs sm:text-sm rounded py-1 px-2 z-10">
+                            <span className="absolute left-0 top-full mt-2 hidden group-hover:block sm:group-hover:block bg-gray-700 text-white text-xs rounded py-1 px-2 z-10 shadow-md">
                               Discord: {player.discord_names}
                             </span>
                           </td>
-                          <td data-label="%" className={`p-2 sm:p-3 ${getParseColor(spec.rankPercent)}`}>
+                          <td data-label="%" className={`p-3 sm:p-4 ${getParseColor(spec.rankPercent)} text-sm sm:text-base font-medium`}>
                             {formatNumber(spec.rankPercent)}
                           </td>
-                          <td data-label="Server Rank" className="p-2 sm:p-3 group flex items-center justify-center sm:justify-start">
+                          <td data-label="Rank" className="p-3 sm:p-4 text-sm sm:text-base font-medium text-center sm:text-left">
                             {spec.serverRank || 'N/A'}
                           </td>
-                          <td data-label="Gear" className="p-2 sm:p-3">-</td>
+                          <td data-label="Gear" className="p-3 sm:p-4 text-gray-400 text-sm">-</td>
                         </tr>
                       ))}
                     </React.Fragment>
