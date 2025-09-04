@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,8 +100,11 @@
             setPlayerData(Array.isArray(playerData) ? playerData : []);
             setGearData(Array.isArray(gearData.players) ? gearData.players : []);
             const iconMap = materialsData.reduce((map, item) => {
-              if (item.itemId && item.iconname) {
-                map[item.itemId] = item.iconname;
+              if (item.itemId) {
+                map[item.itemId] = {
+                  iconname: item.iconname || 'inv_misc_questionmark',
+                  inventoryType: item.inventoryType || 0
+                };
               }
               return map;
             }, {});
@@ -316,9 +320,18 @@
                         <td className="p-3 gear-cell">
                           <div className="flex flex-wrap gap-2">
                             {player.gear.length > 0 ? (
-                              player.gear.map((item, index) => {
+                              player.gear
+                                .filter(item => {
+                                  // Filter out shirt (inventoryType 4) and tabard (inventoryType 19)
+                                  const itemId = item.item ? item.item.id : 'unknown';
+                                  const itemData = itemIconMap[itemId];
+                                  const inventoryType = itemData ? itemData.inventoryType : 0;
+                                  return inventoryType !== 4 && inventoryType !== 19;
+                                })
+                                .map((item, index) => {
                                 const itemId = item.item ? item.item.id : 'unknown';
-                                const iconName = itemIconMap[itemId] || 'inv_misc_questionmark';
+                                const itemData = itemIconMap[itemId];
+                                const iconName = itemData ? itemData.iconname : 'inv_misc_questionmark';
                                 let wowheadData = `item=${itemId}&domain=classic`;
                                 if (item.enchantments && item.enchantments.length > 0) {
                                   const enchIds = item.enchantments.map(ench => ench.enchantment_id).join('.');
