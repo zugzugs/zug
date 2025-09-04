@@ -1,6 +1,117 @@
 [
   {
     "player_names": [
+      "Yabai"
+    ],
+    "discord_names": [
+      "sioux_#0"
+    ],
+    "server_names": [
+      "Zioux/Yabai"
+    ]
+  },
+  {
+    "player_names": [
+      "Patrusapte"
+    ],
+    "discord_names": [
+      "mj5290#0"
+    ],
+    "server_names": [
+      "Patrusapte"
+    ]
+  },
+  {
+    "player_names": [
+      "Suikasuchi"
+    ],
+    "discord_names": [
+      "zorbey#0"
+    ],
+    "server_names": [
+      "Suikasuchi/Warchanger/Oakbrother"
+    ]
+  },
+  {
+    "player_names": [
+      "Drakedoog"
+    ],
+    "discord_names": [
+      "necrobug#0"
+    ],
+    "server_names": [
+      "Nozw/Drgray/Drakedoog/Girm"
+    ]
+  },
+  {
+    "player_names": [
+      "Nemesío"
+    ],
+    "discord_names": [
+      "spychosis#0"
+    ],
+    "server_names": [
+      "twitch.tv/spych0sis"
+    ]
+  },
+  {
+    "player_names": [
+      "Monsur"
+    ],
+    "discord_names": [
+      ".monsur#0"
+    ],
+    "server_names": [
+      "monsur/tunguskaa"
+    ]
+  },
+  {
+    "player_names": [
+      "Hurrikaani",
+      "Lihakirves"
+    ],
+    "discord_names": [
+      "sundown9819#0"
+    ],
+    "server_names": [
+      "Retu/Lihakirves/Luukato"
+    ]
+  },
+  {
+    "player_names": [
+      "Wagyuwu"
+    ],
+    "discord_names": [
+      "kaldoriisi#0"
+    ],
+    "server_names": [
+      "⌞ Wagyuwu ⌝"
+    ]
+  },
+  {
+    "player_names": [
+      "Pantee"
+    ],
+    "discord_names": [
+      ".pawn#0"
+    ],
+    "server_names": [
+      "Pantee~"
+    ]
+  },
+  {
+    "player_names": [
+      "Erizelthree"
+    ],
+    "discord_names": [
+      "erizel#0"
+    ],
+    "server_names": [
+      "Erizel"
+    ]
+  },
+  {
+    "player_names": [
       "Kickyou"
     ],
     "discord_names": [
@@ -8,6 +119,17 @@
     ],
     "server_names": [
       "Wowa(Föxy)"
+    ]
+  },
+  {
+    "player_names": [
+      "Weeceysham"
+    ],
+    "discord_names": [
+      "weecey#0"
+    ],
+    "server_names": [
+      "weecey"
     ]
   },
   {
@@ -23,7 +145,21 @@
   },
   {
     "player_names": [
-      "Blakablaka"
+      "Rhône"
+    ],
+    "discord_names": [
+      "vandeley.#0"
+    ],
+    "server_names": [
+      "Rhône"
+    ]
+  },
+  {
+    "player_names": [
+      "Blakablaka",
+      "Fatudder",
+      "Truckerjohn",
+      "Züy"
     ],
     "discord_names": [
       "krzyo#0"
@@ -45,8 +181,21 @@
   },
   {
     "player_names": [
+      "Ghostmontero"
+    ],
+    "discord_names": [
+      "hellsentinel.#0"
+    ],
+    "server_names": [
+      "Ghostmontero"
+    ]
+  },
+  {
+    "player_names": [
+      "Kösem",
       "Mollymor",
-      "Mollys"
+      "Mollys",
+      "Trishas"
     ],
     "discord_names": [
       "marianne9682#0"
@@ -68,46 +217,28 @@
   },
   {
     "player_names": [
-      "Kyrkjelyd",
-      "Orkaikkje"
-    ],
-    "discord_names": [
-      "scentedandre#0"
-    ],
-    "server_names": [
-      "scented (André)"
-    ]
-  },
-  {
-    "player_names": [
       "Kazbuz"
     ],
     "discord_names": [
       "hyzia234#0"
     ],
     "server_names": [
-      "Kazbuz"
+      "Quanâ"
     ]
   },
   {
     "player_names": [
-      "Stamfons"
-    ],
-    "discord_names": [
-      "j1mmyjam#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
       "Darksarah",
+      "Lightsarah",
       "Matríx",
-      "Nídus"
+      "Nidus"
     ],
     "discord_names": [
+      "matrix_demon_angel#0",
       "natrixdemon#0"
     ],
     "server_names": [
+      "Darksarah",
       "Darkside Dash"
     ]
   },
@@ -124,6 +255,19 @@
   },
   {
     "player_names": [
+      "Madsane",
+      "Madsän",
+      "Madtiger"
+    ],
+    "discord_names": [
+      "madsan._.#0"
+    ],
+    "server_names": [
+      "Madsan"
+    ]
+  },
+  {
+    "player_names": [
       "Hazerk"
     ],
     "discord_names": [
@@ -135,6 +279,7 @@
   },
   {
     "player_names": [
+      "Bedwin",
       "Fresky",
       "Kasturba",
       "Restassured"
@@ -181,6 +326,8 @@
   },
   {
     "player_names": [
+      "Fixahunta",
+      "Fixamixer",
       "Fixxa"
     ],
     "discord_names": [
@@ -192,13 +339,27 @@
   },
   {
     "player_names": [
-      "Pharmacon"
+      "Dyzy",
+      "Dyzyy",
+      "Pharmacon",
+      "Sterop"
     ],
     "discord_names": [
       "sterop.#0"
     ],
     "server_names": [
       "Dyzy"
+    ]
+  },
+  {
+    "player_names": [
+      "Dwood"
+    ],
+    "discord_names": [
+      "shadowls.#0"
+    ],
+    "server_names": [
+      "Dwood"
     ]
   },
   {
@@ -215,13 +376,51 @@
   },
   {
     "player_names": [
-      "Fridaydd"
+      "Qewksewgaren"
     ],
     "discord_names": [
-      "shizlerfridayseena#0"
+      "waiayugae#0"
     ],
     "server_names": [
-      "Friday"
+      "Qewksewgaren"
+    ]
+  },
+  {
+    "player_names": [
+      "Duskedask",
+      "Skyheals",
+      "Skyrroz"
+    ],
+    "discord_names": [
+      "skyrroz_#0"
+    ],
+    "server_names": [
+      "SkyRRoZ"
+    ]
+  },
+  {
+    "player_names": [
+      "Gummipåse"
+    ],
+    "discord_names": [
+      "gummipase#0"
+    ],
+    "server_names": [
+      "Gummipåse"
+    ]
+  },
+  {
+    "player_names": [
+      "Anticoweed",
+      "Noumea",
+      "Noumesha",
+      "Noumheal"
+    ],
+    "discord_names": [
+      "fromnoumea2paris#0"
+    ],
+    "server_names": [
+      "Noumea"
     ]
   },
   {
@@ -238,6 +437,7 @@
   },
   {
     "player_names": [
+      "Procs",
       "Skorp"
     ],
     "discord_names": [
@@ -249,19 +449,32 @@
   },
   {
     "player_names": [
+      "Felderus"
+    ],
+    "discord_names": [
+      "funell#0"
+    ],
+    "server_names": [
+      "Funell"
+    ]
+  },
+  {
+    "player_names": [
       "Studios"
     ],
     "discord_names": [
       "sobs_everlook#0"
     ],
     "server_names": [
-      "Siimi/Studios"
+      "Studios"
     ]
   },
   {
     "player_names": [
+      "Basenburg",
       "Basenhurg",
-      "Hasenborg"
+      "Hasenborg",
+      "Hasenburg"
     ],
     "discord_names": [
       "hasenburg#0"
@@ -272,9 +485,45 @@
   },
   {
     "player_names": [
+      "Ashentotem"
+    ],
+    "discord_names": [
+      "jon_ner#0"
+    ],
+    "server_names": [
+      "Ashentotem"
+    ]
+  },
+  {
+    "player_names": [
+      "Déli",
+      "Dêli"
+    ],
+    "discord_names": [
+      "shota01918#0"
+    ],
+    "server_names": [
+      "Deli"
+    ]
+  },
+  {
+    "player_names": [
+      "Yuusuke"
+    ],
+    "discord_names": [
+      "garr5903#0"
+    ],
+    "server_names": [
+      "Yuusuke"
+    ]
+  },
+  {
+    "player_names": [
       "Kathalina",
       "Kesuna",
-      "Laurin"
+      "Laurin",
+      "Rikarda",
+      "Talika"
     ],
     "discord_names": [
       "kesuna_#0"
@@ -303,7 +552,7 @@
       "mat1624#0"
     ],
     "server_names": [
-      "Madmatz"
+      "Madmatz / Hìt"
     ]
   },
   {
@@ -330,153 +579,6 @@
   },
   {
     "player_names": [
-      "Laggamonstah",
-      "Stravostomis"
-    ],
-    "discord_names": [
-      "laggermonsta#0"
-    ],
-    "server_names": [
-      "laggamon/stravostomis"
-    ]
-  },
-  {
-    "player_names": [
-      "Erebor",
-      "Khazaddum"
-    ],
-    "discord_names": [
-      "gandalfq8#0"
-    ],
-    "server_names": [
-      "hobbiton- bigtesty"
-    ]
-  },
-  {
-    "player_names": [
-      "Kuuhmuuh"
-    ],
-    "discord_names": [
-      "kuhstompergorgoll#0"
-    ],
-    "server_names": [
-      "Blitzschlag/ Kuuhmuuh"
-    ]
-  },
-  {
-    "player_names": [
-      "Moonfox"
-    ],
-    "discord_names": [
-      "4forty4#0"
-    ],
-    "server_names": [
-      "Moonfox"
-    ]
-  },
-  {
-    "player_names": [
-      "Madsane",
-      "Madsän",
-      "Madtiger"
-    ],
-    "discord_names": [
-      "madsan._.#0"
-    ],
-    "server_names": [
-      "Madsan"
-    ]
-  },
-  {
-    "player_names": [
-      "Dethprincess",
-      "Lifeprincess"
-    ],
-    "discord_names": [
-      "death.princess#0"
-    ],
-    "server_names": [
-      "Anna - DethPrincess/LifePrincess"
-    ]
-  },
-  {
-    "player_names": [
-      "Sylmir"
-    ],
-    "discord_names": [
-      "kalma2987#0"
-    ],
-    "server_names": [
-      "Sylmir"
-    ]
-  },
-  {
-    "player_names": [
-      "Insoh"
-    ],
-    "discord_names": [
-      ".ins0mnia#0"
-    ],
-    "server_names": [
-      "Insoh"
-    ]
-  },
-  {
-    "player_names": [
-      "Nazdreg",
-      "Nazdrek"
-    ],
-    "discord_names": [
-      "nazdreg1252#0"
-    ],
-    "server_names": [
-      "Nazdreg"
-    ]
-  },
-  {
-    "player_names": [
-      "Iskastarn"
-    ],
-    "discord_names": [
-      "siiool#0"
-    ],
-    "server_names": [
-      "Iskastarn"
-    ]
-  },
-  {
-    "player_names": [
-      "Wargull"
-    ],
-    "discord_names": [
-      ".kraggore#0"
-    ],
-    "server_names": [
-      "Wargull"
-    ]
-  },
-  {
-    "player_names": [
-      "Krady"
-    ],
-    "discord_names": [
-      "krady#0"
-    ],
-    "server_names": [
-      "krady"
-    ]
-  },
-  {
-    "player_names": [
-      "Valemar"
-    ],
-    "discord_names": [
-      "zechram#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
       "Samaha",
       "Samahathree",
       "Samahatwo"
@@ -490,48 +592,14 @@
   },
   {
     "player_names": [
-      "Irontombs"
+      "Farsokkelos",
+      "Karaflosx"
     ],
     "discord_names": [
-      "iron_50678#0",
-      "irongrin#0"
+      "kkelisx#0"
     ],
     "server_names": [
-      "Iron/Red"
-    ]
-  },
-  {
-    "player_names": [
-      "Alwaysshaded",
-      "Lozobob"
-    ],
-    "discord_names": [
-      "loz9548#0"
-    ],
-    "server_names": [
-      "Alwaysshaded/Lozobob"
-    ]
-  },
-  {
-    "player_names": [
-      "Yuusuke"
-    ],
-    "discord_names": [
-      "garr5903#0"
-    ],
-    "server_names": [
-      "Yuusuke"
-    ]
-  },
-  {
-    "player_names": [
-      "Severislock"
-    ],
-    "discord_names": [
-      "dospuntosu#0"
-    ],
-    "server_names": [
-      "Severis"
+      "Farsokkelos-Karaflosx"
     ]
   },
   {
@@ -548,72 +616,85 @@
   },
   {
     "player_names": [
-      "Skyheals",
-      "Skyrroz"
+      "Harkshock",
+      "Harksmash"
     ],
     "discord_names": [
-      "skyrroz_#0"
+      "hark6010#0"
     ],
     "server_names": [
-      "SkyRRoZ"
+      "Hark"
     ]
   },
   {
     "player_names": [
-      "Senø"
+      "Dethprincess",
+      "Lifeprincess"
     ],
     "discord_names": [
-      "senomars#0"
+      "death.princess#0"
     ],
     "server_names": [
-      "Senø"
+      "Anna - DethPrincess/LifePrincess"
     ]
   },
   {
     "player_names": [
-      "Ylemx"
+      "Insoh"
     ],
     "discord_names": [
-      "shox0372#0"
+      ".ins0mnia#0"
     ],
     "server_names": [
-      "Ylemx"
+      "Insoh"
     ]
   },
   {
     "player_names": [
-      "Qewksewgaren"
+      "Sylmir"
     ],
     "discord_names": [
-      "waiayugae#0"
+      "kalma2987#0"
     ],
     "server_names": [
-      "Qewksewgaren"
+      "Sylmir"
     ]
   },
   {
     "player_names": [
-      "Déli",
-      "Dêli"
+      "Lactoes",
+      "Ociren"
     ],
     "discord_names": [
-      "shota01918#0"
+      "floorpov_#0"
     ],
     "server_names": [
-      "Deli"
+      "Floorpov"
+    ]
+  },
+  {
+    "player_names": [
+      "Wargull"
+    ],
+    "discord_names": [
+      ".kraggore#0"
+    ],
+    "server_names": [
+      "Wargull"
     ]
   },
   {
     "player_names": [
       "Dotkttor",
       "Jooe",
-      "Mischah"
+      "Mischah",
+      "Xiauo"
     ],
     "discord_names": [
       "pusherno1#0"
     ],
     "server_names": [
-      "Mischah"
+      "Xiauo"
     ]
   },
   {
@@ -629,584 +710,39 @@
   },
   {
     "player_names": [
-      "Missdott"
+      "Laggermonsta",
+      "Stravostomis"
     ],
     "discord_names": [
-      "geirern#0"
+      "laggermonsta#0"
     ],
     "server_names": [
-      "Missdott"
+      "laggamon/stravostomis"
     ]
   },
   {
     "player_names": [
-      "Anticoweed",
-      "Noumea",
-      "Noumesha",
-      "Noumheal"
+      "Iskastarn"
     ],
     "discord_names": [
-      "fromnoumea2paris#0"
+      "siiool#0"
     ],
     "server_names": [
-      "Noumea"
+      "Iskastarn"
     ]
   },
   {
     "player_names": [
-      "Shämmy"
+      "Nifelhiem",
+      "Tjolla",
+      "Tjollahide"
     ],
     "discord_names": [
-      "toebz#0"
+      "nifelhiem#0"
     ],
     "server_names": [
-      "Shämmy"
+      "Nifelhiem"
     ]
-  },
-  {
-    "player_names": [
-      "Shøcknorris"
-    ],
-    "discord_names": [
-      "toxi91#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Clashing"
-    ],
-    "discord_names": [
-      "silent_storms#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Rhône"
-    ],
-    "discord_names": [
-      "vandeley.#0"
-    ],
-    "server_names": [
-      "Rhône"
-    ]
-  },
-  {
-    "player_names": [
-      "Chadville",
-      "Laramie",
-      "Riverdale"
-    ],
-    "discord_names": [
-      "playahater88#0"
-    ],
-    "server_names": [
-      "Riverdale"
-    ]
-  },
-  {
-    "player_names": [
-      "Monsur",
-      "Tunguskaa"
-    ],
-    "discord_names": [
-      ".monsur#0"
-    ],
-    "server_names": [
-      "monsur/tunguskaa"
-    ]
-  },
-  {
-    "player_names": [
-      "Felderus"
-    ],
-    "discord_names": [
-      "funell#0"
-    ],
-    "server_names": [
-      "Funell"
-    ]
-  },
-  {
-    "player_names": [
-      "Zulgrin"
-    ],
-    "discord_names": [
-      "pogromis#0"
-    ],
-    "server_names": [
-      "Zulgrin/Pogromis"
-    ]
-  },
-  {
-    "player_names": [
-      "Mordock"
-    ],
-    "discord_names": [
-      "gogozunz#0"
-    ],
-    "server_names": [
-      "gogozunz"
-    ]
-  },
-  {
-    "player_names": [
-      "Grintchu"
-    ],
-    "discord_names": [
-      "grintchou#0"
-    ],
-    "server_names": [
-      "Grintchou"
-    ]
-  },
-  {
-    "player_names": [
-      "Pasture"
-    ],
-    "discord_names": [
-      "boblawin#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Farsokkelos",
-      "Karaflosx"
-    ],
-    "discord_names": [
-      "kkelisx#0"
-    ],
-    "server_names": [
-      "Farsokkelos-Karaflosx"
-    ]
-  },
-  {
-    "player_names": [
-      "Baldicifus"
-    ],
-    "discord_names": [
-      "nineisgod#0"
-    ],
-    "server_names": [
-      "Ninegods"
-    ]
-  },
-  {
-    "player_names": [
-      "Hartrua"
-    ],
-    "discord_names": [
-      "herkulez#0"
-    ],
-    "server_names": [
-      "Hartrua"
-    ]
-  },
-  {
-    "player_names": [
-      "Cryptseeker",
-      "Ghostmontero",
-      "Totemicus"
-    ],
-    "discord_names": [
-      "hellsentinel.#0"
-    ],
-    "server_names": [
-      "Ghostmontero"
-    ]
-  },
-  {
-    "player_names": [
-      "Goldegram"
-    ],
-    "discord_names": [
-      "goldegram#0"
-    ],
-    "server_names": [
-      "Goldegram"
-    ]
-  },
-  {
-    "player_names": [
-      "Lázer"
-    ],
-    "discord_names": [
-      "lazer1992#0"
-    ],
-    "server_names": [
-      "Lazer"
-    ]
-  },
-  {
-    "player_names": [
-      "Ratex"
-    ],
-    "discord_names": [
-      "_ratex#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Ashentotem"
-    ],
-    "discord_names": [
-      "jon_ner#0"
-    ],
-    "server_names": [
-      "Ashentotem"
-    ]
-  },
-  {
-    "player_names": [
-      "Prôndo"
-    ],
-    "discord_names": [
-      "zirzlii#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Excup"
-    ],
-    "discord_names": [
-      "excup#0"
-    ],
-    "server_names": [
-      "excup"
-    ]
-  },
-  {
-    "player_names": [
-      "Saevian"
-    ],
-    "discord_names": [
-      "rok2512#0"
-    ],
-    "server_names": [
-      "Saevian"
-    ]
-  },
-  {
-    "player_names": [
-      "Kpem"
-    ],
-    "discord_names": [
-      "kpem14#0"
-    ],
-    "server_names": [
-      "Kpem"
-    ]
-  },
-  {
-    "player_names": [
-      "Uglymoo"
-    ],
-    "discord_names": [
-      "havuk420#0"
-    ],
-    "server_names": [
-      "Havuk"
-    ]
-  },
-  {
-    "player_names": [
-      "Rakieta"
-    ],
-    "discord_names": [
-      "rakieta420420#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Derpburger",
-      "Hámburger"
-    ],
-    "discord_names": [
-      "hamburger1260#0"
-    ],
-    "server_names": [
-      "hamburger"
-    ]
-  },
-  {
-    "player_names": [
-      "Aicô"
-    ],
-    "discord_names": [
-      "supafeel123#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Gavion"
-    ],
-    "discord_names": [
-      "valtuni#0"
-    ],
-    "server_names": [
-      "Valtuni"
-    ]
-  },
-  {
-    "player_names": [
-      "Felumbonk"
-    ],
-    "discord_names": [
-      "iamdoctordoom#0"
-    ],
-    "server_names": [
-      "Felumbra"
-    ]
-  },
-  {
-    "player_names": [
-      "Naarulordx"
-    ],
-    "discord_names": [
-      "naaru1654#0"
-    ],
-    "server_names": [
-      "naaaru"
-    ]
-  },
-  {
-    "player_names": [
-      "Gastille"
-    ],
-    "discord_names": [
-      "xerandaal#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Stormsfire"
-    ],
-    "discord_names": [
-      "zhukass#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Miuu"
-    ],
-    "discord_names": [
-      "miuu5234#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Confusedblud"
-    ],
-    "discord_names": [
-      "tomwhite1405#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Fitzso"
-    ],
-    "discord_names": [
-      "fitz2226#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Regee",
-      "Resurgence"
-    ],
-    "discord_names": [
-      "iceamo_30849#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Kauno"
-    ],
-    "discord_names": [
-      "thesarion#0"
-    ],
-    "server_names": [
-      "Thesarion"
-    ]
-  },
-  {
-    "player_names": [
-      "Camaradä",
-      "Raptty"
-    ],
-    "discord_names": [
-      "raptty#0"
-    ],
-    "server_names": [
-      "Raptty/Luckykrushy"
-    ]
-  },
-  {
-    "player_names": [
-      "Fillitz",
-      "Framerlol"
-    ],
-    "discord_names": [
-      "fram3r#0"
-    ],
-    "server_names": [
-      "Fram3r"
-    ]
-  },
-  {
-    "player_names": [
-      "Daedt"
-    ],
-    "discord_names": [
-      "smocky7623#0"
-    ],
-    "server_names": [
-      "Daedt"
-    ]
-  },
-  {
-    "player_names": [
-      "Weeceysham"
-    ],
-    "discord_names": [
-      "weecey#0"
-    ],
-    "server_names": [
-      "weecey"
-    ]
-  },
-  {
-    "player_names": [
-      "Harkshock",
-      "Harksmash"
-    ],
-    "discord_names": [
-      "hark6010#0"
-    ],
-    "server_names": [
-      "Hark"
-    ]
-  },
-  {
-    "player_names": [
-      "Blaironaldo"
-    ],
-    "discord_names": [
-      "kalhadar#0"
-    ],
-    "server_names": [
-      "Kékus"
-    ]
-  },
-  {
-    "player_names": [
-      "Notcorrupted",
-      "Orgknight"
-    ],
-    "discord_names": [
-      "alqallaf#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Adorivitavis"
-    ],
-    "discord_names": [
-      "coolt.#0"
-    ],
-    "server_names": [
-      "Aduravita/Adorivitavis"
-    ]
-  },
-  {
-    "player_names": [
-      "Nihow"
-    ],
-    "discord_names": [
-      "uae3333#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Falicia",
-      "Lactoes",
-      "Nerico",
-      "Ociren"
-    ],
-    "discord_names": [
-      "floorpov_#0"
-    ],
-    "server_names": [
-      "Floorpov"
-    ]
-  },
-  {
-    "player_names": [
-      "Brap",
-      "Omnomnom"
-    ],
-    "discord_names": [
-      "brraapp_#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Inå",
-      "Nyå"
-    ],
-    "discord_names": [
-      "inai95#0"
-    ],
-    "server_names": [
-      "Inå /  Nyå"
-    ]
-  },
-  {
-    "player_names": [
-      "Matesh"
-    ],
-    "discord_names": [
-      "warrin9787#0"
-    ],
-    "server_names": [
-      "warrin"
-    ]
-  },
-  {
-    "player_names": [
-      "Norush",
-      "Qzaar"
-    ],
-    "discord_names": [
-      "qzar100#0"
-    ],
-    "server_names": [
-      "Norush"
-    ]
-  },
-  {
-    "player_names": [
-      "Pelesis"
-    ],
-    "discord_names": [
-      "narkomasutra#0"
-    ],
-    "server_names": []
   },
   {
     "player_names": [
@@ -1224,52 +760,31 @@
   },
   {
     "player_names": [
-      "Kyem",
-      "Nauseda"
+      "Nazdreg",
+      "Nazdrek"
     ],
     "discord_names": [
-      "1kyem#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Chitty"
-    ],
-    "discord_names": [
-      "downe89#0"
+      "nazdreg1252#0"
     ],
     "server_names": [
-      "Chitty/zepingu"
+      "Nazdreg"
     ]
   },
   {
     "player_names": [
-      "Gummipåse"
+      "Fillitz",
+      "Framerlol"
     ],
     "discord_names": [
-      "gummipase#0"
+      "fram3r#0"
     ],
     "server_names": [
-      "Gummipåse"
+      "Fram3r"
     ]
   },
   {
     "player_names": [
-      "Ixoro",
-      "Oro"
-    ],
-    "discord_names": [
-      "cjmoss#0"
-    ],
-    "server_names": [
-      "Oro"
-    ]
-  },
-  {
-    "player_names": [
-      "Dunderklumpe",
-      "Dunderkniven"
+      "Dunderklumpe"
     ],
     "discord_names": [
       "kroon9122#0"
@@ -1280,12 +795,26 @@
   },
   {
     "player_names": [
-      "Steelwolf"
+      "Blitzschlag",
+      "Kuuhmuuh"
     ],
     "discord_names": [
-      "steel_wolf#0"
+      "kuhstompergorgoll#0"
     ],
-    "server_names": []
+    "server_names": [
+      "Blitzschlag/ Kuuhmuuh"
+    ]
+  },
+  {
+    "player_names": [
+      "Liquidyaku"
+    ],
+    "discord_names": [
+      "yakulot#0"
+    ],
+    "server_names": [
+      "yaku"
+    ]
   },
   {
     "player_names": [
@@ -1303,99 +832,11 @@
   },
   {
     "player_names": [
-      "Nataschild"
-    ],
-    "discord_names": [
-      ".satyrico#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Haegstroma"
-    ],
-    "discord_names": [
-      "haegstrom#0"
-    ],
-    "server_names": [
-      "Haegstrom"
-    ]
-  },
-  {
-    "player_names": [
-      "Tipsius"
-    ],
-    "discord_names": [
-      "tipukas#0"
-    ],
-    "server_names": [
-      "Tipas/Tipukas/Tipsius/Tipolockas"
-    ]
-  },
-  {
-    "player_names": [
-      "Riwana",
-      "Shadowniwa"
-    ],
-    "discord_names": [
-      "archniwa#0"
-    ],
-    "server_names": [
-      "Riwana"
-    ]
-  },
-  {
-    "player_names": [
-      "Shniperz"
-    ],
-    "discord_names": [
-      "_walki#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Didierdécham"
-    ],
-    "discord_names": [
-      "clodmakelel#0"
-    ],
-    "server_names": []
-  },
-  {
-    "player_names": [
-      "Jwhistle",
-      "Jwhistler",
-      "Jwizzle"
-    ],
-    "discord_names": [
-      "jv1zzle#0"
-    ],
-    "server_names": [
-      "Jv1zzle"
-    ]
-  },
-  {
-    "player_names": [
-      "Dwood",
-      "Mørt"
-    ],
-    "discord_names": [
-      "shadowls.#0"
-    ],
-    "server_names": [
-      "Dwood"
-    ]
-  },
-  {
-    "player_names": [
-      "Mintfresh",
+      "Zgfarmer",
       "Minto",
-      "Mintó",
-      "Zgfarmer"
+      "Mintfresh"
     ],
     "discord_names": [
-      "Unknown",
       "hojlund123#0"
     ],
     "server_names": [
@@ -1404,15 +845,112 @@
   },
   {
     "player_names": [
-      "Nifelhiem",
-      "Tjolla",
-      "Tjollahide"
+      "Aseelj",
+      "Kyrkjelyd",
+      "Lessbow",
+      "Orkaikkje",
+      "Orkamage"
     ],
     "discord_names": [
-      "nifelhiem#0"
+      "scentedandre#0"
     ],
     "server_names": [
-      "Nifelhiem"
+      "scented (André)"
+    ]
+  },
+  {
+    "player_names": [
+      "Fridaydd",
+      "Fridayh",
+      "Fridayn"
+    ],
+    "discord_names": [
+      "shizlerfridayseena#0"
+    ],
+    "server_names": [
+      "Friday"
+    ]
+  },
+  {
+    "player_names": [
+      "Moonfox"
+    ],
+    "discord_names": [
+      "4forty4#0"
+    ],
+    "server_names": [
+      "Moonfox"
+    ]
+  },
+  {
+    "player_names": [
+      "Raptty"
+    ],
+    "discord_names": [
+      "raptty#0"
+    ],
+    "server_names": [
+      "Raptty/Luckykrushy"
+    ]
+  },
+  {
+    "player_names": [
+      "Chadville",
+      "Laramie",
+      "Riverdale"
+    ],
+    "discord_names": [
+      "playahater88#0"
+    ],
+    "server_names": [
+      "Chadville/Riverdale"
+    ]
+  },
+  {
+    "player_names": [
+      "Krady"
+    ],
+    "discord_names": [
+      "krady#0"
+    ],
+    "server_names": [
+      "krady"
+    ]
+  },
+  {
+    "player_names": [
+      "Derpburger",
+      "Hámburger",
+      "Twoburgers"
+    ],
+    "discord_names": [
+      "hamburger1260#0"
+    ],
+    "server_names": [
+      "hamburger"
+    ]
+  },
+  {
+    "player_names": [
+      "Irontomb"
+    ],
+    "discord_names": [
+      "iron_50678#0",
+      "irongrin#0"
+    ],
+    "server_names": [
+      "Iron/Red"
+    ]
+  },
+  {
+    "player_names": [
+      "Jwhistler"
+    ],
+    "discord_names": [
+      "jv1zzle#0"
+    ],
+    "server_names": [
+      "Jv1zzle"
     ]
   }
 ]
